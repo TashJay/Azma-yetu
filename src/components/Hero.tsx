@@ -1,5 +1,5 @@
 import { motion } from 'motion/react';
-import heroImage from '../assets/images/kenyan_community_hero_1780695687550.png';
+import heroImage from '../assets/images/kenyan_community_dev_1780696322959.png';
 import { ArrowRight, Users, HeartHandshake, Leaf } from 'lucide-react';
 
 export function Hero() {

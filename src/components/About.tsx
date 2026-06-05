@@ -1,4 +1,5 @@
 import { motion } from 'motion/react';
+import aboutImage from '../assets/images/kenyan_children_1780696307562.png';
 
 export function About() {
   return (
@@ -14,8 +15,8 @@ export function About() {
           >
             <div className="aspect-[4/3] rounded-3xl overflow-hidden shadow-2xl">
               <img 
-                src="https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?q=80&w=2070&auto=format&fit=crop" 
-                alt="Children in community" 
+                src={aboutImage} 
+                alt="Smiling Kenyan children" 
                 className="w-full h-full object-cover"
                 referrerPolicy="no-referrer"
               />
@@ -37,7 +38,7 @@ export function About() {
                 "Azma Yetu" translates to "Our Resolve" in Swahili. We are a passionate, grassroots Community-Based Organization operating in the heart of Kenya. Our firm belief is that true development must start from within the community itself.
               </p>
               <p>
-                Founded by dedicated young leaders, we bridge the gap between resources and those who need them most. We believe in providing a hand-up, not just a hand-out, fostering resilience and independence.
+                Founded by dedicated leaders, we bridge the gap between resources and those who need them most. We believe in providing a hand-up, not just a hand-out, fostering resilience and independence.
               </p>
             </div>
             
