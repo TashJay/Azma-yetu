@@ -1,0 +1,8 @@
+{
+  "name": "Azma Yetu CBO",
+  "description": "Homepage for Azma Yetu CBO, a Kenyan Community-Based Organization focused on community empowerment.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
