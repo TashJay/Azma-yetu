@@ -14,9 +14,9 @@ export function Header() {
         <div className="flex justify-between items-center h-20">
           {/* Left Title */}
           <div className="flex-shrink-0 flex items-center z-10">
-            <a href="#" className="font-display font-bold text-lg sm:text-xl tracking-tight drop-shadow-sm flex items-center whitespace-pre">
+            <a href="#" className="font-display font-bold text-base sm:text-lg tracking-tight drop-shadow-sm flex items-center whitespace-pre">
               <span className="text-earth-900">AZMA </span>
-              <span className="text-amber-800">YETU </span>
+              <span className="text-amber-800 drop-shadow-md">YETU </span>
               <span className="text-earth-900">CBO</span>
               <span className="text-ochre-500">.</span>
             </a>

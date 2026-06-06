@@ -62,17 +62,17 @@ export function FAQ() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-50px" }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="border border-earth-200 rounded-2xl bg-white overflow-hidden shadow-sm hover:shadow-md transition-shadow"
+              className={`border rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-colors duration-300 ${openIndex === index ? 'border-amber-200 bg-amber-50/30' : 'border-earth-200 bg-white'}`}
             >
               <button
                 onClick={() => setOpenIndex(openIndex === index ? null : index)}
                 className="w-full px-6 py-5 text-left flex justify-between items-center focus:outline-none"
               >
-                <span className="font-semibold text-earth-900 text-lg pr-8">{faq.question}</span>
+                <span className={`font-semibold text-lg pr-8 transition-colors ${openIndex === index ? 'text-amber-900' : 'text-earth-900'}`}>{faq.question}</span>
                 <motion.div 
                   animate={{ rotate: openIndex === index ? 180 : 0 }}
                   transition={{ duration: 0.3 }}
-                  className="flex-shrink-0 text-earth-500"
+                  className={`flex-shrink-0 ${openIndex === index ? 'text-amber-600' : 'text-earth-500'}`}
                 >
                   <ChevronDown className="h-5 w-5" />
                 </motion.div>
@@ -86,7 +86,7 @@ export function FAQ() {
                     exit={{ height: 0, opacity: 0 }}
                     transition={{ duration: 0.3 }}
                   >
-                    <div className="px-6 pb-5 text-earth-700/80 leading-relaxed">
+                    <div className="px-6 pb-5 text-amber-800/90 leading-relaxed">
                       {faq.answer}
                     </div>
                   </motion.div>
