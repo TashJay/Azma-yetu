@@ -17,7 +17,7 @@ export default function App() {
         <ScrollProgress />
         
         {/* Background Watermark */}
-        <div className="fixed inset-0 z-[-1] pointer-events-none flex items-center justify-center overflow-hidden opacity-[0.25]">
+        <div className="fixed inset-0 z-[-1] pointer-events-none flex items-center justify-center overflow-hidden opacity-50">
           <img 
             src="/logo/azmalogo.png" 
             alt="" 
