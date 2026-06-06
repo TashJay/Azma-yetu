@@ -75,10 +75,15 @@ export function Hero() {
                 <div className="absolute top-0 right-0 -mr-4 -mt-4 w-72 h-72 bg-ochre-500/20 rounded-full blur-3xl"></div>
                 <div className="bg-earth-900/60 backdrop-blur-md rounded-3xl p-8 border border-white/10 shadow-2xl relative translate-y-12">
                    <div className="space-y-6">
-                      <div className="flex items-start">
-                         <div className="flex-shrink-0 bg-ochre-500 p-3 rounded-2xl">
+                       <div className="flex items-start">
+                         <motion.div 
+                           initial={{ scale: 0 }} 
+                           animate={{ scale: 1 }} 
+                           transition={{ type: "spring", stiffness: 200, damping: 12, delay: 0.5 }}
+                           className="flex-shrink-0 bg-ochre-500 p-3 rounded-2xl"
+                         >
                            <Users className="h-6 w-6 text-earth-900" />
-                         </div>
+                         </motion.div>
                          <div className="ml-5">
                            <h3 className="text-white font-bold text-xl">
                              <Counter value={10} format={(v) => `${Math.round(v)}k+`} />
@@ -87,9 +92,14 @@ export function Hero() {
                          </div>
                       </div>
                       <div className="flex items-start">
-                         <div className="flex-shrink-0 bg-white p-3 rounded-2xl">
+                         <motion.div 
+                           initial={{ scale: 0 }} 
+                           animate={{ scale: 1 }} 
+                           transition={{ type: "spring", stiffness: 200, damping: 12, delay: 0.7 }}
+                           className="flex-shrink-0 bg-white p-3 rounded-2xl"
+                         >
                            <HeartHandshake className="h-6 w-6 text-earth-600" />
-                         </div>
+                         </motion.div>
                          <div className="ml-5">
                            <h3 className="text-white font-bold text-xl">
                              <Counter value={50} format={(v) => `${Math.round(v)}+`} />
@@ -98,9 +108,14 @@ export function Hero() {
                          </div>
                       </div>
                       <div className="flex items-start">
-                         <div className="flex-shrink-0 bg-earth-700 p-3 rounded-2xl border border-earth-600">
+                         <motion.div 
+                           initial={{ scale: 0 }} 
+                           animate={{ scale: 1 }} 
+                           transition={{ type: "spring", stiffness: 200, damping: 12, delay: 0.9 }}
+                           className="flex-shrink-0 bg-earth-700 p-3 rounded-2xl border border-earth-600"
+                         >
                            <Leaf className="h-6 w-6 text-ochre-400" />
-                         </div>
+                         </motion.div>
                          <div className="ml-5">
                            <h3 className="text-white font-bold text-xl">
                              <Counter value={100} format={(v) => `${Math.round(v)}%`} />

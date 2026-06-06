@@ -9,15 +9,21 @@ import { Footer } from './components/Footer';
 import { LanguageProvider } from './contexts/LanguageContext';
 import { ScrollProgress } from './components/ScrollProgress';
 import { FAQ } from './components/FAQ';
+import { motion } from 'motion/react';
 
 export default function App() {
   return (
     <LanguageProvider>
-      <div className="min-h-screen font-sans selection:bg-ochre-500/30 selection:text-earth-900 relative">
+      <motion.div 
+        initial={{ opacity: 0, filter: "blur(10px)" }}
+        animate={{ opacity: 1, filter: "blur(0px)" }}
+        transition={{ duration: 0.8, ease: "easeOut" }}
+        className="min-h-screen font-sans selection:bg-ochre-500/30 selection:text-earth-900 relative"
+      >
         <ScrollProgress />
         
         {/* Background Watermark */}
-        <div className="fixed inset-0 z-[-1] pointer-events-none flex items-center justify-center overflow-hidden opacity-50">
+        <div className="fixed inset-0 z-[-1] pointer-events-none flex items-center justify-center overflow-hidden opacity-10">
           <img 
             src="/logo/azmalogo.png" 
             alt="" 
@@ -36,7 +42,7 @@ export default function App() {
           <CallToAction />
         </main>
         <Footer />
-      </div>
+      </motion.div>
     </LanguageProvider>
   );
 }

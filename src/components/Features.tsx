@@ -10,21 +10,29 @@ export function Features() {
       title: lang === 'en' ? 'Elimu (Education)' : 'Elimu',
       description: lang === 'en' ? 'Providing resources, scholarships, and after-school programs to ensure every child has the opportunity to learn and thrive in Kenya.' : 'Kutoa rasilimali, ufadhili wa masomo, na programu za baada ya shule ili kuhakikisha kila mtoto anapata fursa ya kujifunza.',
       icon: BookOpen,
+      iconColor: 'text-sky-600',
+      bgColor: 'bg-sky-100',
     },
     {
       title: lang === 'en' ? 'Afya (Health)' : 'Afya',
       description: lang === 'en' ? 'Organizing medical camps, health awareness campaigns, and supporting local clinics to improve community wellbeing across the region.' : 'Kuandaa kambi za matibabu, kampeni za uhamasishaji afya, na kusaidia zahanati za mitaa ili kuboresha ustawi.',
       icon: Stethoscope,
+      iconColor: 'text-rose-600',
+      bgColor: 'bg-rose-100',
     },
     {
       title: lang === 'en' ? 'Mazingira (Environment)' : 'Mazingira',
       description: lang === 'en' ? 'Promoting sustainable farming, tree planting drives, and clean-up initiatives for a greener, healthier ecosystem.' : 'Kuhamasisha kilimo endelevu, upandaji miti, na mipango ya usafi kwa mazingira bora zaidi.',
       icon: Sprout,
+      iconColor: 'text-emerald-600',
+      bgColor: 'bg-emerald-100',
     },
     {
       title: lang === 'en' ? 'Uwezeshaji (Empowerment)' : 'Uwezeshaji',
       description: lang === 'en' ? 'Empowering local youth and women through skills training, micro-loans, and entrepreneurial mentorship.' : 'Kuwezesha vijana na wanawake kwa mafunzo ya ujuzi, mikopo midogo, na ushauri wa ujasiriamali.',
       icon: HandCoins,
+      iconColor: 'text-amber-600',
+      bgColor: 'bg-amber-100',
     },
   ];
 
@@ -64,9 +72,20 @@ export function Features() {
                 transition={{ duration: 0.7, delay: index * 0.15, ease: "easeOut" }}
                 className="bg-white p-8 rounded-3xl shadow-sm border border-earth-100 hover:shadow-lg hover:border-earth-200 transition-all hover:-translate-y-2 group"
               >
-                <div className="w-14 h-14 bg-earth-50 text-earth-700 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                <motion.div 
+                  initial={{ scale: 0, rotate: -45 }}
+                  whileInView={{ scale: 1, rotate: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ 
+                    type: "spring", 
+                    stiffness: 200, 
+                    damping: 10,
+                    delay: index * 0.15 + 0.3 
+                  }}
+                  className={`w-14 h-14 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 group-hover:rotate-6 transition-transform ${feature.bgColor} ${feature.iconColor}`}
+                >
                   <Icon className="h-7 w-7" />
-                </div>
+                </motion.div>
                 <h4 className="text-xl font-bold text-earth-900 mb-3">{feature.title}</h4>
                 <p className="text-earth-700/80 leading-relaxed">
                   {feature.description}

@@ -19,7 +19,7 @@ export function GetInvolved() {
       description: lang === 'en' ? 'We welcome corporate and institutional partnerships to scale our impact across various Kenyan counties.' : 'Tunakaribisha ubia na mashirika ili kupanua wigo wetu katika kaunti mbalimbali za Kenya.',
       action: lang === 'en' ? 'Become a partner' : 'Kuwa mbia',
       icon: Handshake,
-      color: 'bg-earth-50 text-earth-700',
+      color: 'bg-emerald-50 text-emerald-600',
       link: '#contact'
     },
     {
@@ -64,9 +64,20 @@ export function GetInvolved() {
                 transition={{ duration: 0.7, delay: index * 0.15, ease: "easeOut" }}
                 className="bg-white p-8 rounded-3xl shadow-sm border border-earth-100 flex flex-col items-center text-center hover:shadow-xl hover:-translate-y-2 transition-all group"
               >
-                <div className={`w-16 h-16 rounded-2xl flex items-center justify-center mb-6 transition-transform group-hover:scale-110 ${way.color}`}>
+                <motion.div 
+                  initial={{ scale: 0, rotate: -45 }}
+                  whileInView={{ scale: 1, rotate: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ 
+                    type: "spring", 
+                    stiffness: 200, 
+                    damping: 10,
+                    delay: index * 0.15 + 0.3 
+                  }}
+                  className={`w-16 h-16 rounded-2xl flex items-center justify-center mb-6 transition-transform group-hover:scale-110 group-hover:rotate-6 ${way.color}`}
+                >
                   <Icon className="h-8 w-8" />
-                </div>
+                </motion.div>
                 <h4 className="text-2xl font-bold text-earth-900 mb-3">{way.title}</h4>
                 <p className="text-earth-700/80 leading-relaxed flex-grow mb-8">
                   {way.description}
