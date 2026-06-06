@@ -15,7 +15,7 @@ export function Header() {
           {/* Left Title */}
           <div className="flex-shrink-0 flex items-center z-10">
             <a href="#" className="font-display font-bold text-xl sm:text-2xl text-earth-900 tracking-tight">
-              Azma Yetu<span className="text-ochre-500">.</span>
+              AZMA YETU CBO<span className="text-ochre-500">.</span>
             </a>
           </div>
           
