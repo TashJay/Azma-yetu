@@ -25,11 +25,11 @@ export function Header() {
               <img 
                 src="/logo/azmalogo.png" 
                 alt="Azma Yetu Logo" 
-                className="h-16 sm:h-20 w-auto object-contain" 
+                className="h-24 sm:h-32 w-auto object-contain drop-shadow-md" 
                 onError={() => setImgError(true)} 
               />
             ) : (
-              <div className="h-12 w-12 sm:h-16 sm:w-16 bg-ochre-100 border-2 border-dashed border-ochre-300 rounded-full flex items-center justify-center text-[10px] sm:text-xs text-ochre-700 font-medium text-center leading-tight">
+              <div className="h-20 w-20 sm:h-28 sm:w-28 bg-ochre-100 border-2 border-dashed border-ochre-300 rounded-full flex items-center justify-center text-xs sm:text-sm text-ochre-700 font-medium text-center leading-tight">
                 Logo
               </div>
             )}
