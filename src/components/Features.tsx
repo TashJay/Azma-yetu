@@ -29,7 +29,7 @@ export function Features() {
   ];
 
   return (
-    <section id="initiatives" className="py-24 bg-earth-50/80 backdrop-blur-md relative overflow-hidden">
+    <section id="initiatives" className="py-24 bg-earth-50/40 backdrop-blur-sm relative overflow-hidden">
       <div className="absolute inset-0 bg-[radial-gradient(#8D6E6333_1px,transparent_1px)] bg-[size:16px_16px] opacity-40 pointer-events-none"></div>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <motion.div 

@@ -6,7 +6,7 @@ export function About() {
   const { lang } = useLanguage();
 
   return (
-    <section id="about" className="py-24 bg-white/80 backdrop-blur-md overflow-hidden relative">
+    <section id="about" className="py-24 bg-white/40 backdrop-blur-sm overflow-hidden relative">
       <div className="absolute inset-0 bg-[radial-gradient(#8D6E6333_1px,transparent_1px)] bg-[size:20px_20px] opacity-20 pointer-events-none"></div>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="grid lg:grid-cols-2 gap-16 items-center">

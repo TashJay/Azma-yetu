@@ -33,7 +33,7 @@ export function GetInvolved() {
   ];
 
   return (
-    <section className="py-24 bg-earth-50/90 backdrop-blur-md border-t border-earth-100 relative overflow-hidden">
+    <section className="py-24 bg-earth-50/50 backdrop-blur-sm border-t border-earth-100 relative overflow-hidden">
       <div className="absolute inset-0 bg-[radial-gradient(#8D6E6333_1px,transparent_1px)] bg-[size:20px_20px] opacity-20 pointer-events-none"></div>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <motion.div 
@@ -117,7 +117,7 @@ export function GetInvolved() {
                     type="text" 
                     id="name" 
                     required 
-                    className="w-full px-4 py-3 rounded-xl border border-earth-200 focus:ring-2 focus:ring-ochre-500 focus:border-ochre-500 bg-earth-50/30 focus:bg-white transition-colors"
+                    className="w-full px-4 py-3 rounded-xl border border-earth-200 focus:ring-2 focus:ring-ochre-500 focus:border-ochre-500 bg-earth-50/60 focus:bg-white transition-colors"
                     placeholder={lang === 'en' ? "Jane Doe" : "Amina Juma"}
                   />
                 </div>
@@ -127,7 +127,7 @@ export function GetInvolved() {
                     type="email" 
                     id="email" 
                     required 
-                    className="w-full px-4 py-3 rounded-xl border border-earth-200 focus:ring-2 focus:ring-ochre-500 focus:border-ochre-500 bg-earth-50/30 focus:bg-white transition-colors"
+                    className="w-full px-4 py-3 rounded-xl border border-earth-200 focus:ring-2 focus:ring-ochre-500 focus:border-ochre-500 bg-earth-50/60 focus:bg-white transition-colors"
                     placeholder="example@email.com"
                   />
                 </div>
@@ -135,7 +135,7 @@ export function GetInvolved() {
               
               <div className="text-left">
                 <label htmlFor="subject" className="block text-sm font-medium text-earth-800 mb-2">{lang === 'en' ? 'Subject' : 'Kichwa cha Habari'}</label>
-                <select id="subject" className="w-full px-4 py-3 rounded-xl border border-earth-200 focus:ring-2 focus:ring-ochre-500 focus:border-ochre-500 bg-earth-50/30 focus:bg-white transition-colors">
+                <select id="subject" className="w-full px-4 py-3 rounded-xl border border-earth-200 focus:ring-2 focus:ring-ochre-500 focus:border-ochre-500 bg-earth-50/60 focus:bg-white transition-colors">
                   <option>{lang === 'en' ? 'General Inquiry' : 'Swali la Ujumla'}</option>
                   <option>{lang === 'en' ? 'Volunteer Opportunities' : 'Nafasi za Kujitolea'}</option>
                   <option>{lang === 'en' ? 'Partnership Proposal' : 'Pendekezo la Ubia'}</option>
@@ -149,7 +149,7 @@ export function GetInvolved() {
                   id="message" 
                   required 
                   rows={4} 
-                  className="w-full px-4 py-3 rounded-xl border border-earth-200 focus:ring-2 focus:ring-ochre-500 focus:border-ochre-500 bg-earth-50/30 focus:bg-white transition-colors resize-none"
+                  className="w-full px-4 py-3 rounded-xl border border-earth-200 focus:ring-2 focus:ring-ochre-500 focus:border-ochre-500 bg-earth-50/60 focus:bg-white transition-colors resize-none"
                   placeholder={lang === 'en' ? "How can we build a brighter tomorrow together?" : "Tunawezaje kujenga kesho bora pamoja?"}
                 ></textarea>
               </div>

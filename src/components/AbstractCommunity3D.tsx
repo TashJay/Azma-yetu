@@ -78,7 +78,7 @@ function Particles() {
 
   return (
       <instancedMesh ref={mesh} args={[undefined, undefined, count]}>
-          <sphereGeometry args={[0.4, 16, 16]}>
+          <sphereGeometry args={[0.5, 16, 16]}>
               <instancedBufferAttribute attach="attributes-color" args={[colorArray, 3]} />
           </sphereGeometry>
           <meshPhongMaterial vertexColors />
@@ -88,12 +88,11 @@ function Particles() {
 
 export function AbstractCommunity3D() {
   return (
-      <div className="fixed inset-0 z-[-1] pointer-events-none opacity-80">
-          <div className="absolute inset-0 bg-white/5" />
+      <div className="fixed inset-0 z-[-1] pointer-events-none opacity-100">
           <Canvas camera={{ position: [0, 0, 40], fov: 60 }} className="z-0">
-              <ambientLight intensity={0.9} />
-              <pointLight position={[10, 10, 10]} intensity={1.8} color="#f59e0b" />
-              <pointLight position={[-10, -10, -10]} intensity={1.2} color="#6D4C41" />
+              <ambientLight intensity={1.2} />
+              <pointLight position={[10, 10, 10]} intensity={2.5} color="#f59e0b" />
+              <pointLight position={[-10, -10, -10]} intensity={2} color="#6D4C41" />
               <Particles />
           </Canvas>
       </div>
