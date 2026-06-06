@@ -16,10 +16,10 @@ export function Header() {
               <img 
                 src="/logo/azmalogo.png" 
                 alt="Azma Yetu Logo" 
-                className="h-10 w-auto object-contain" 
+                className="h-16 sm:h-20 w-auto object-contain" 
                 onError={(e) => { e.currentTarget.style.display = 'none'; }} 
               />
-              <span className="font-display font-bold text-2xl text-earth-900 tracking-tight">
+              <span className="font-display font-bold text-lg sm:text-xl text-earth-900 tracking-tight">
                 Azma Yetu<span className="text-ochre-500">.</span>
               </span>
             </a>
