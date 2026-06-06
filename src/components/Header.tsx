@@ -5,21 +5,28 @@ import { useLanguage } from '../contexts/LanguageContext';
 
 export function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [imgError, setImgError] = useState(false);
   const { lang, toggleLang } = useLanguage();
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-white/70 backdrop-blur-md border-b border-earth-100">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-20">
-          <div className="flex-shrink-0 flex items-center group">
-            <a href="#" className="flex items-center gap-3">
-              <img 
-                src="/logo/azmalogo.png" 
-                alt="Azma Yetu Logo" 
-                className="h-16 sm:h-20 w-auto object-contain" 
-                onError={(e) => { e.currentTarget.style.display = 'none'; }} 
-              />
-              <span className="font-display font-bold text-lg sm:text-xl text-earth-900 tracking-tight">
+          <div className="flex-shrink-0 flex items-center group py-2">
+            <a href="#" className="flex items-center gap-3 h-full">
+              {!imgError ? (
+                <img 
+                  src="/logo/azmalogo.png" 
+                  alt="Azma Yetu Logo" 
+                  className="h-24 sm:h-28 w-auto object-contain" 
+                  onError={() => setImgError(true)} 
+                />
+              ) : (
+                <div className="h-20 w-20 sm:h-24 sm:w-24 bg-ochre-100 border-2 border-dashed border-ochre-300 rounded-full flex items-center justify-center text-center p-2 text-xs text-ochre-700 font-medium">
+                  Your Logo Here
+                </div>
+              )}
+              <span className="font-display font-bold text-base sm:text-lg text-earth-900 tracking-tight">
                 Azma Yetu<span className="text-ochre-500">.</span>
               </span>
             </a>

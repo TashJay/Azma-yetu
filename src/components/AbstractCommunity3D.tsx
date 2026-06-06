@@ -34,12 +34,12 @@ function Particles() {
 
   const colorArray = useMemo(() => {
       const colors = [
-          new THREE.Color('#34d399'), // Emerald-400
-          new THREE.Color('#fbbf24'), // Amber-400
-          new THREE.Color('#f59e0b'), // Amber-500
-          new THREE.Color('#a78bfa'), // Violet-400 (just for some pop)
-          new THREE.Color('#6ee7b7'), // Emerald-300
-          new THREE.Color('#fcd34d'), // Amber-300
+          new THREE.Color('#000000'), // Black (People)
+          new THREE.Color('#BB0000'), // Red (Struggle / Blood)
+          new THREE.Color('#006600'), // Green (Land / Environment)
+          new THREE.Color('#FFFFFF'), // White (Peace)
+          new THREE.Color('#D2691E'), // Earthy Ochre
+          new THREE.Color('#8B4513'), // Savannah Brown
       ];
       const array = new Float32Array(count * 3);
       for (let i = 0; i < count; i++) {
@@ -78,7 +78,7 @@ function Particles() {
 
   return (
       <instancedMesh ref={mesh} args={[undefined, undefined, count]}>
-          <sphereGeometry args={[1.5, 16, 16]}>
+          <sphereGeometry args={[0.3, 16, 16]}>
               <instancedBufferAttribute attach="attributes-color" args={[colorArray, 3]} />
           </sphereGeometry>
           <meshPhongMaterial vertexColors />
@@ -88,7 +88,7 @@ function Particles() {
 
 export function AbstractCommunity3D() {
   return (
-      <div className="fixed inset-0 z-[-1] pointer-events-none opacity-100">
+      <div className="fixed inset-0 z-[-1] pointer-events-none opacity-30">
           <Canvas camera={{ position: [0, 0, 30], fov: 60 }} className="z-0">
               <ambientLight intensity={1.2} />
               <pointLight position={[10, 10, 10]} intensity={2.5} color="#f59e0b" />

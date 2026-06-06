@@ -106,7 +106,14 @@ export function GetInvolved() {
             <form 
               onSubmit={(e) => { 
                 e.preventDefault(); 
-                alert(lang === 'en' ? 'Thank you for reaching out to Azma Yetu! We will get back to you soon.' : 'Asante kwa kuwasiliana na Azma Yetu! Tutarudi kwako hivi karibuni.'); 
+                const form = e.currentTarget as HTMLFormElement;
+                const name = (form.elements.namedItem('name') as HTMLInputElement).value;
+                const email = (form.elements.namedItem('email') as HTMLInputElement).value;
+                const subject = (form.elements.namedItem('subject') as HTMLSelectElement).value;
+                const message = (form.elements.namedItem('message') as HTMLTextAreaElement).value;
+                
+                const mailtoUrl = `mailto:Azmayetucbo@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`)}`;
+                window.location.href = mailtoUrl;
               }} 
               className="space-y-6 relative z-10"
             >
@@ -116,6 +123,7 @@ export function GetInvolved() {
                   <input 
                     type="text" 
                     id="name" 
+                    name="name"
                     required 
                     className="w-full px-4 py-3 rounded-xl border border-earth-200 focus:ring-2 focus:ring-ochre-500 focus:border-ochre-500 bg-earth-50/60 focus:bg-white transition-colors"
                     placeholder={lang === 'en' ? "Jane Doe" : "Amina Juma"}
@@ -126,6 +134,7 @@ export function GetInvolved() {
                   <input 
                     type="email" 
                     id="email" 
+                    name="email"
                     required 
                     className="w-full px-4 py-3 rounded-xl border border-earth-200 focus:ring-2 focus:ring-ochre-500 focus:border-ochre-500 bg-earth-50/60 focus:bg-white transition-colors"
                     placeholder="example@email.com"
@@ -135,7 +144,7 @@ export function GetInvolved() {
               
               <div className="text-left">
                 <label htmlFor="subject" className="block text-sm font-medium text-earth-800 mb-2">{lang === 'en' ? 'Subject' : 'Kichwa cha Habari'}</label>
-                <select id="subject" className="w-full px-4 py-3 rounded-xl border border-earth-200 focus:ring-2 focus:ring-ochre-500 focus:border-ochre-500 bg-earth-50/60 focus:bg-white transition-colors">
+                <select id="subject" name="subject" className="w-full px-4 py-3 rounded-xl border border-earth-200 focus:ring-2 focus:ring-ochre-500 focus:border-ochre-500 bg-earth-50/60 focus:bg-white transition-colors">
                   <option>{lang === 'en' ? 'General Inquiry' : 'Swali la Ujumla'}</option>
                   <option>{lang === 'en' ? 'Volunteer Opportunities' : 'Nafasi za Kujitolea'}</option>
                   <option>{lang === 'en' ? 'Partnership Proposal' : 'Pendekezo la Ubia'}</option>
@@ -147,6 +156,7 @@ export function GetInvolved() {
                 <label htmlFor="message" className="block text-sm font-medium text-earth-800 mb-2">{lang === 'en' ? 'Message' : 'Ujumbe'}</label>
                 <textarea 
                   id="message" 
+                  name="message"
                   required 
                   rows={4} 
                   className="w-full px-4 py-3 rounded-xl border border-earth-200 focus:ring-2 focus:ring-ochre-500 focus:border-ochre-500 bg-earth-50/60 focus:bg-white transition-colors resize-none"
