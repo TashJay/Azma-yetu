@@ -6,7 +6,6 @@ import { Impact } from './components/Impact';
 import { GetInvolved } from './components/GetInvolved';
 import { CallToAction } from './components/CallToAction';
 import { Footer } from './components/Footer';
-import { AbstractCommunity3D } from './components/AbstractCommunity3D';
 import { LanguageProvider } from './contexts/LanguageContext';
 import { ScrollProgress } from './components/ScrollProgress';
 import { FAQ } from './components/FAQ';
@@ -16,7 +15,16 @@ export default function App() {
     <LanguageProvider>
       <div className="min-h-screen font-sans selection:bg-ochre-500/30 selection:text-earth-900 relative">
         <ScrollProgress />
-        <AbstractCommunity3D />
+        
+        {/* Background Watermark */}
+        <div className="fixed inset-0 z-[-1] pointer-events-none flex items-center justify-center overflow-hidden opacity-[0.03]">
+          <img 
+            src="/logo/azmalogo.png" 
+            alt="" 
+            className="w-[150%] max-w-none md:w-[80%] md:max-w-4xl object-contain grayscale" 
+          />
+        </div>
+
         <Header />
         <main className="relative z-10">
           <Hero />
