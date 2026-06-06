@@ -23,13 +23,15 @@ export default function App() {
         <ScrollProgress />
         
         {/* Background Watermark */}
-        <div className="absolute top-0 left-0 w-full h-[100vh] z-[-1] pointer-events-none flex items-center justify-center overflow-hidden opacity-10">
-          <img 
-            src="/logo/azmalogo.png" 
-            alt="" 
-            className="w-[90%] md:w-[60%] max-w-2xl object-contain pt-24" 
-          />
-        </div>
+        <div 
+          className="absolute inset-0 z-0 pointer-events-none opacity-10 mix-blend-multiply"
+          style={{
+            backgroundImage: 'url("/logo/azmalogo.png")',
+            backgroundRepeat: 'repeat',
+            backgroundSize: '500px',
+            backgroundPosition: 'center top'
+          }}
+        />
 
         <Header />
         <main className="relative z-10">
