@@ -13,7 +13,7 @@ export function Impact() {
   ];
 
   return (
-    <section id="impact" className="py-24 bg-white/40 backdrop-blur-sm relative overflow-hidden">
+    <section id="impact" className="py-24 md:py-32 bg-white/40 backdrop-blur-sm relative overflow-hidden">
       <div className="absolute inset-0 bg-[radial-gradient(#8D6E6333_1px,transparent_1px)] bg-[size:24px_24px] opacity-30 pointer-events-none"></div>
       {/* Subtle organic background blobs */}
       <div className="absolute top-0 left-0 w-96 h-96 bg-earth-50/50 rounded-full mix-blend-multiply filter blur-3xl opacity-50 animate-blob"></div>
@@ -40,7 +40,7 @@ export function Impact() {
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 mb-4">
           {stats.map((stat, index) => (
             <motion.div
               key={stat.label}

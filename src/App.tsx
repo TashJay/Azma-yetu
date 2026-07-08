@@ -3,7 +3,10 @@ import { Hero } from './components/Hero';
 import { About } from './components/About';
 import { Features } from './components/Features';
 import { Impact } from './components/Impact';
+import { ImageCarousel } from './components/ImageCarousel';
 import { GetInvolved } from './components/GetInvolved';
+import { Founders } from './components/Founders';
+import { Payment } from './components/Payment';
 import { CallToAction } from './components/CallToAction';
 import { Footer } from './components/Footer';
 import { LanguageProvider } from './contexts/LanguageContext';
@@ -21,30 +24,33 @@ export default function App() {
         initial={{ opacity: 0, filter: "blur(10px)" }}
         animate={{ opacity: 1, filter: "blur(0px)" }}
         transition={{ duration: 0.8, ease: "easeOut" }}
-        className="min-h-screen flex flex-col font-sans selection:bg-ochre-500/30 selection:text-earth-900 relative bg-[#fafafa]"
+        className="min-h-[100dvh] flex flex-col font-sans selection:bg-ochre-500/30 selection:text-earth-900 relative bg-[#fafafa]"
       >
         <ScrollProgress />
         
         {/* Background Watermark */}
-        <motion.div 
-          style={{ y }}
-          className="fixed inset-0 z-0 pointer-events-none flex items-center justify-center opacity-10 mix-blend-multiply"
+        <div 
+          className="fixed inset-0 z-0 pointer-events-none flex items-center justify-center overflow-hidden mix-blend-multiply"
         >
-          <img 
+          <motion.img 
+            style={{ y }}
             src="/logo/azmalogo.png" 
             alt="Watermark" 
-            className="w-[90%] md:w-[60%] max-w-3xl object-contain" 
+            className="w-[90%] md:w-[60%] max-w-3xl object-contain opacity-[0.03]" 
           />
-        </motion.div>
+        </div>
 
         <Header />
         <main className="relative z-10 flex-grow">
           <Hero />
           <About />
           <Features />
+          <ImageCarousel />
           <Impact />
+          <Founders />
           <FAQ />
           <GetInvolved />
+          <Payment />
           <CallToAction />
         </main>
         <Footer />

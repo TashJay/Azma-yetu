@@ -35,7 +35,7 @@ export function FAQ() {
   ];
 
   return (
-    <section className="py-24 relative overflow-hidden bg-earth-50/40 backdrop-blur-sm">
+    <section className="py-24 md:py-32 relative overflow-hidden bg-earth-50/40 backdrop-blur-sm">
       <div className="absolute inset-0 bg-[radial-gradient(#8D6E6333_1px,transparent_1px)] bg-[size:20px_20px] opacity-30 pointer-events-none"></div>
       
       <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">

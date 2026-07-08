@@ -33,7 +33,7 @@ export function GetInvolved() {
   ];
 
   return (
-    <section className="py-24 bg-earth-50/50 backdrop-blur-sm border-t border-earth-100 relative overflow-hidden">
+    <section className="py-24 md:py-32 bg-earth-50/50 backdrop-blur-sm border-t border-earth-100 relative overflow-hidden">
       <div className="absolute inset-0 bg-[radial-gradient(#8D6E6333_1px,transparent_1px)] bg-[size:20px_20px] opacity-20 pointer-events-none"></div>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <motion.div 
@@ -62,7 +62,7 @@ export function GetInvolved() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-50px" }}
                 transition={{ duration: 0.7, delay: index * 0.15, ease: "easeOut" }}
-                className="bg-white p-8 rounded-3xl shadow-sm border border-earth-100 flex flex-col items-center text-center hover:shadow-xl hover:-translate-y-2 transition-all group"
+                className="bg-white p-8 md:p-10 rounded-3xl shadow-sm border border-earth-100 flex flex-col items-center text-center hover:shadow-xl hover:-translate-y-2 transition-all group"
               >
                 <motion.div 
                   initial={{ scale: 0, rotate: -45 }}
@@ -74,7 +74,7 @@ export function GetInvolved() {
                     damping: 10,
                     delay: index * 0.15 + 0.3 
                   }}
-                  className={`w-16 h-16 rounded-2xl flex items-center justify-center mb-6 transition-transform group-hover:scale-110 group-hover:rotate-6 ${way.color}`}
+                  className={`w-16 h-16 rounded-full flex items-center justify-center mb-6 transition-transform group-hover:scale-110 group-hover:rotate-6 ${way.color}`}
                 >
                   <Icon className="h-8 w-8" />
                 </motion.div>
@@ -136,7 +136,7 @@ export function GetInvolved() {
                     id="name" 
                     name="name"
                     required 
-                    className="w-full px-4 py-3 rounded-xl border border-earth-200 focus:ring-2 focus:ring-ochre-500 focus:border-ochre-500 bg-earth-50/60 focus:bg-white transition-colors"
+                    className="w-full px-4 py-3 min-h-[48px] rounded-xl border-2 border-earth-600 focus:ring-2 focus:ring-ochre-500 focus:border-ochre-500 bg-white/60 focus:bg-white transition-colors text-earth-900"
                     placeholder={lang === 'en' ? "Jane Doe" : "Amina Juma"}
                   />
                 </div>
@@ -147,7 +147,7 @@ export function GetInvolved() {
                     id="email" 
                     name="email"
                     required 
-                    className="w-full px-4 py-3 rounded-xl border border-earth-200 focus:ring-2 focus:ring-ochre-500 focus:border-ochre-500 bg-earth-50/60 focus:bg-white transition-colors"
+                    className="w-full px-4 py-3 min-h-[48px] rounded-xl border-2 border-earth-600 focus:ring-2 focus:ring-ochre-500 focus:border-ochre-500 bg-white/60 focus:bg-white transition-colors text-earth-900"
                     placeholder="example@email.com"
                   />
                 </div>
@@ -155,7 +155,7 @@ export function GetInvolved() {
               
               <div className="text-left">
                 <label htmlFor="subject" className="block text-sm font-medium text-earth-800 mb-2">{lang === 'en' ? 'Subject' : 'Kichwa cha Habari'}</label>
-                <select id="subject" name="subject" className="w-full px-4 py-3 rounded-xl border border-earth-200 focus:ring-2 focus:ring-ochre-500 focus:border-ochre-500 bg-earth-50/60 focus:bg-white transition-colors">
+                <select id="subject" name="subject" className="w-full px-4 py-3 min-h-[48px] rounded-xl border-2 border-earth-600 focus:ring-2 focus:ring-ochre-500 focus:border-ochre-500 bg-white/60 focus:bg-white transition-colors text-earth-900">
                   <option>{lang === 'en' ? 'General Inquiry' : 'Swali la Ujumla'}</option>
                   <option>{lang === 'en' ? 'Volunteer Opportunities' : 'Nafasi za Kujitolea'}</option>
                   <option>{lang === 'en' ? 'Partnership Proposal' : 'Pendekezo la Ubia'}</option>
@@ -170,7 +170,7 @@ export function GetInvolved() {
                   name="message"
                   required 
                   rows={4} 
-                  className="w-full px-4 py-3 rounded-xl border border-earth-200 focus:ring-2 focus:ring-ochre-500 focus:border-ochre-500 bg-earth-50/60 focus:bg-white transition-colors resize-none"
+                  className="w-full px-4 py-3 min-h-[48px] rounded-xl border-2 border-earth-600 focus:ring-2 focus:ring-ochre-500 focus:border-ochre-500 bg-white/60 focus:bg-white transition-colors resize-y text-earth-900"
                   placeholder={lang === 'en' ? "How can we build a brighter tomorrow together?" : "Tunawezaje kujenga kesho bora pamoja?"}
                 ></textarea>
               </div>
@@ -180,7 +180,7 @@ export function GetInvolved() {
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                   type="submit" 
-                  className="inline-flex items-center justify-center px-8 py-4 rounded-full bg-earth-800 text-white font-bold hover:bg-earth-900 focus:ring-4 focus:ring-earth-200 transition-all text-lg shadow-md hover:-translate-y-1"
+                  className="inline-flex items-center justify-center px-8 py-4 min-h-[48px] w-full sm:w-auto rounded-full bg-ochre-500 text-earth-900 font-bold hover:bg-ochre-400 focus:ring-4 focus:ring-ochre-200 transition-all text-lg shadow-md hover:-translate-y-1"
                 >
                   {lang === 'en' ? 'Send Message' : 'Tuma Ujumbe'}
                 </motion.button>

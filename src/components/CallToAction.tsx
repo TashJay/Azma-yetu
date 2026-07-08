@@ -6,7 +6,7 @@ export function CallToAction() {
   const { lang } = useLanguage();
 
   return (
-    <section className="relative py-24 overflow-hidden bg-earth-800/80 backdrop-blur-sm">
+    <section className="relative py-24 md:py-32 overflow-hidden bg-earth-800/80 backdrop-blur-sm">
       <div className="absolute inset-0 bg-earth-900/40"></div>
       
       {/* Decorative patterns */}

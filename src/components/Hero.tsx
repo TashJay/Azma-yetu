@@ -1,8 +1,8 @@
 import { motion } from 'motion/react';
-import heroImage from '../assets/images/kenyan_community_dev_1780696322959.png';
 import { ArrowRight, Users, HeartHandshake, Leaf } from 'lucide-react';
 import { useLanguage } from '../contexts/LanguageContext';
 import { Counter } from './Counter';
+import { TreeAnimation } from './TreeAnimation';
 
 export function Hero() {
   const { lang } = useLanguage();
@@ -12,13 +12,21 @@ export function Hero() {
       {/* Background Image Setup with Overlay */}
       <div className="absolute inset-0 z-0">
         <img 
-          src={heroImage} 
+          src="https://images.unsplash.com/photo-1542810634-71277d95dc8c?q=80&w=2070&auto=format&fit=crop" 
           alt="Diverse Kenyan community members collaborating cheerfully outdoors" 
           className="w-full h-full object-cover"
           referrerPolicy="no-referrer"
         />
-        <div className="absolute inset-0 bg-earth-900/80 mix-blend-multiply"></div>
-        <div className="absolute inset-0 bg-gradient-to-t from-earth-900 via-earth-900/60 to-transparent"></div>
+        <div className="absolute inset-0 bg-earth-900/50 mix-blend-multiply"></div>
+        <div className="absolute inset-0 bg-earth-900/75"></div>
+        <div className="absolute inset-0 bg-gradient-to-t from-earth-900 via-earth-900/80 to-transparent"></div>
+        
+        {/* Animated Horizon Trees as Silhouettes */}
+        <div className="absolute bottom-0 left-0 right-0 h-64 pointer-events-none flex items-end justify-between px-4 sm:px-20 z-0 select-none overflow-hidden">
+           <TreeAnimation className="w-48 sm:w-80 h-48 sm:h-80 text-black opacity-70 transform -translate-x-10 translate-y-6" />
+           <TreeAnimation className="w-32 h-32 text-black opacity-50 transform translate-y-2 hidden md:block" />
+           <TreeAnimation className="w-64 sm:w-96 h-64 sm:h-96 text-black opacity-80 transform translate-x-12 translate-y-12" />
+        </div>
       </div>
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -33,7 +41,7 @@ export function Hero() {
               <span className="flex h-2 w-2 rounded-full bg-ochre-500 mr-2 animate-pulse"></span>
               {lang === 'en' ? 'Azma Yetu Community Based Organization' : 'Shirika la Kijamii la Azma Yetu'}
             </div>
-            <h1 className="font-display text-5xl sm:text-6xl lg:text-7xl font-bold tracking-tight text-white mb-6 leading-[1.1]">
+            <h1 className="font-display text-[clamp(2.5rem,10vw,4.5rem)] sm:text-6xl lg:text-7xl font-bold tracking-tight text-white mb-6 leading-[1.1] break-words">
               {lang === 'en' ? 'Community ' : 'Uwezeshaji wa '}
               <span className="text-ochre-500">{lang === 'en' ? 'Empowerment.' : 'Jamii.'}</span>
             </h1>
@@ -73,14 +81,15 @@ export function Hero() {
              {/* Abstract geometry/stats cards overlapping the hero area to give a modern flair */}
              <div className="relative w-full max-w-sm">
                 <div className="absolute top-0 right-0 -mr-4 -mt-4 w-72 h-72 bg-ochre-500/20 rounded-full blur-3xl"></div>
-                <div className="bg-earth-900/60 backdrop-blur-md rounded-3xl p-8 border border-white/10 shadow-2xl relative translate-y-12">
+                
+                <div className="bg-earth-900/60 backdrop-blur-md rounded-3xl p-8 border border-white/10 shadow-2xl relative z-20 translate-y-12">
                    <div className="space-y-6">
                        <div className="flex items-start">
                          <motion.div 
                            initial={{ scale: 0 }} 
                            animate={{ scale: 1 }} 
                            transition={{ type: "spring", stiffness: 200, damping: 12, delay: 0.5 }}
-                           className="flex-shrink-0 bg-ochre-500 p-3 rounded-2xl"
+                           className="flex-shrink-0 bg-ochre-500 p-3 rounded-full"
                          >
                            <Users className="h-6 w-6 text-earth-900" />
                          </motion.div>
@@ -96,7 +105,7 @@ export function Hero() {
                            initial={{ scale: 0 }} 
                            animate={{ scale: 1 }} 
                            transition={{ type: "spring", stiffness: 200, damping: 12, delay: 0.7 }}
-                           className="flex-shrink-0 bg-white p-3 rounded-2xl"
+                           className="flex-shrink-0 bg-white p-3 rounded-full"
                          >
                            <HeartHandshake className="h-6 w-6 text-earth-600" />
                          </motion.div>
@@ -112,7 +121,7 @@ export function Hero() {
                            initial={{ scale: 0 }} 
                            animate={{ scale: 1 }} 
                            transition={{ type: "spring", stiffness: 200, damping: 12, delay: 0.9 }}
-                           className="flex-shrink-0 bg-earth-700 p-3 rounded-2xl border border-earth-600"
+                           className="flex-shrink-0 bg-earth-700 p-3 rounded-full border border-earth-600"
                          >
                            <Leaf className="h-6 w-6 text-ochre-400" />
                          </motion.div>

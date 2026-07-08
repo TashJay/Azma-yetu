@@ -37,7 +37,7 @@ export function Features() {
   ];
 
   return (
-    <section id="initiatives" className="py-24 bg-earth-50/40 backdrop-blur-sm relative overflow-hidden">
+    <section id="initiatives" className="py-24 md:py-32 bg-earth-50/40 backdrop-blur-sm relative overflow-hidden">
       <div className="absolute inset-0 bg-[radial-gradient(#8D6E6333_1px,transparent_1px)] bg-[size:16px_16px] opacity-40 pointer-events-none"></div>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <motion.div 
@@ -82,7 +82,7 @@ export function Features() {
                     damping: 10,
                     delay: index * 0.15 + 0.3 
                   }}
-                  className={`w-14 h-14 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 group-hover:rotate-6 transition-transform ${feature.bgColor} ${feature.iconColor}`}
+                  className={`w-14 h-14 rounded-full flex items-center justify-center mb-6 group-hover:scale-110 group-hover:rotate-6 transition-transform ${feature.bgColor} ${feature.iconColor}`}
                 >
                   <Icon className="h-7 w-7" />
                 </motion.div>
