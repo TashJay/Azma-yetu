@@ -59,9 +59,6 @@ export function Payment() {
               <li>{lang === 'en' ? 'Enter details and amount' : 'Ingiza maelezo na kiasi'}</li>
               <li>{lang === 'en' ? 'Enter PIN to confirm' : 'Ingiza PIN kuthibitisha'}</li>
             </ol>
-            <div className="absolute top-4 right-4 bg-green-500 text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">
-              Recommended
-            </div>
           </motion.div>
 
           {/* KCB Bank */}
@@ -81,17 +78,18 @@ export function Payment() {
             <div className="space-y-4 text-earth-700 mb-6">
               <div className="flex flex-col border-b border-earth-100 pb-2">
                 <span className="text-earth-500 text-sm">{lang === 'en' ? 'Account Name' : 'Jina la Akaunti'}:</span>
-                <span className="font-bold text-earth-900">Azma Yetu CBO</span>
+                <span className="font-bold text-earth-900">Azma Yetu Community Based Organisation</span>
               </div>
               <div className="flex flex-col border-b border-earth-100 pb-2">
                 <span className="text-earth-500 text-sm">{lang === 'en' ? 'Account No' : 'Namba ya Akaunti'}:</span>
-                <span className="font-mono font-bold text-lg text-earth-900">8106815</span>
+                <span className="font-mono font-bold text-lg text-earth-900">1353323358</span>
+                <span className="text-xs text-earth-500 mt-1">{lang === 'en' ? 'Kerugoya Branch' : 'Tawi la Kerugoya'}</span>
               </div>
             </div>
             <ul className="text-sm text-earth-600 space-y-3">
               <li className="flex gap-2">
                 <span className="font-bold text-earth-900">App:</span>
-                <span>{lang === 'en' ? 'Transfer to Account 8106815' : 'Tuma kwenye Akaunti 8106815'}</span>
+                <span>{lang === 'en' ? 'Transfer to Account 1353323358' : 'Tuma kwenye Akaunti 1353323358'}</span>
               </li>
               <li className="flex gap-2">
                 <span className="font-bold text-earth-900">USSD:</span>
