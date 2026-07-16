@@ -73,7 +73,7 @@ export function Founders() {
                 style={{ translateX: 16, translateY: 16 }}
               />
               <img
-                src="/Khadija.jpg"
+                src="/logo/Khadija.jpg"
                 alt="Khadija Mustafa — Founder and Director of Azma Yetu CBO"
                 className="w-48 h-48 md:w-64 md:h-64 rounded-full object-cover border-4 border-white shadow-xl"
                 onError={(e) => {

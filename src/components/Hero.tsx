@@ -19,7 +19,7 @@ export function Hero() {
       {/* Parallax background */}
       <motion.div className="absolute inset-0" style={{ y: imgY }}>
         <img
-          src="/src/assets/images/kenyan_community_hero_1780695687550.png"
+          src="/logo/kenyan_community_hero_1780695687550.png"
           alt="Kenyan community members working together"
           className="w-full h-full object-cover opacity-35"
         />

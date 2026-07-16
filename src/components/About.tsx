@@ -30,7 +30,7 @@ export function About() {
             />
             <div className="absolute -bottom-6 -right-6 w-32 h-32 bg-forest-900/10 rounded-3xl -z-10" />
             <motion.img
-              src="/src/assets/images/kenyan_children_1780696307562.png"
+              src="/logo/kenyan_children_1780696307562.png"
               alt="Kenyan children supported by Azma Yetu CBO"
               className="w-full aspect-[4/5] object-cover rounded-3xl shadow-2xl"
               whileHover={{ scale: 1.02 }}
