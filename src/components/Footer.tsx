@@ -1,8 +1,6 @@
-import { useLanguage } from '../contexts/LanguageContext';
 import { Mail, MapPin } from 'lucide-react';
 import { useState } from 'react';
 
-// Social icon SVGs inline (no extra package needed)
 function FacebookIcon() {
   return (
     <svg viewBox="0 0 24 24" fill="currentColor" className="w-5 h-5">
@@ -41,29 +39,27 @@ function YouTubeIcon() {
   );
 }
 
+const links = [
+  { href: '#about',    label: 'About Us'   },
+  { href: '#our-work', label: 'Our Work'   },
+  { href: '#founders', label: 'Leadership' },
+  { href: '#donate',   label: 'Donate'     },
+  { href: '#contact',  label: 'Contact'    },
+];
+
+const socials = [
+  { Icon: FacebookIcon,  href: 'https://facebook.com/azmayetucbo',  label: 'Facebook'    },
+  { Icon: InstagramIcon, href: 'https://instagram.com/azmayetucbo', label: 'Instagram'   },
+  { Icon: TikTokIcon,    href: 'https://tiktok.com/@azmayetucbo',   label: 'TikTok'      },
+  { Icon: XIcon,         href: 'https://x.com/azmayetucbo',         label: 'X (Twitter)' },
+  { Icon: YouTubeIcon,   href: 'https://youtube.com/@azmayetucbo',  label: 'YouTube'     },
+];
+
 export function Footer() {
-  const { lang } = useLanguage();
   const [imgError, setImgError] = useState(false);
-
-  const links = [
-    { href: '#about', en: 'About Us', sw: 'Kutuhusu' },
-    { href: '#our-work', en: 'Our Work', sw: 'Kazi Yetu' },
-    { href: '#founders', en: 'Leadership', sw: 'Uongozi' },
-    { href: '#donate', en: 'Donate', sw: 'Changia' },
-    { href: '#contact', en: 'Contact', sw: 'Wasiliana' },
-  ];
-
-  const socials = [
-    { Icon: FacebookIcon, href: 'https://facebook.com/azmayetucbo', label: 'Facebook' },
-    { Icon: InstagramIcon, href: 'https://instagram.com/azmayetucbo', label: 'Instagram' },
-    { Icon: TikTokIcon, href: 'https://tiktok.com/@azmayetucbo', label: 'TikTok' },
-    { Icon: XIcon, href: 'https://x.com/azmayetucbo', label: 'X (Twitter)' },
-    { Icon: YouTubeIcon, href: 'https://youtube.com/@azmayetucbo', label: 'YouTube' },
-  ];
 
   return (
     <footer className="bg-earth-900 text-white">
-      {/* Top strip */}
       <div className="h-1 bg-gradient-to-r from-ochre-600 via-ochre-400 to-ochre-600" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
@@ -71,24 +67,21 @@ export function Footer() {
           {/* Brand */}
           <div>
             <div className="flex items-center gap-3 mb-5">
-              {!imgError ? (
+              {!imgError && (
                 <img
                   src="/logo/azmalogo.png"
                   alt="Azma Yetu"
                   className="h-12 w-auto object-contain brightness-0 invert opacity-90"
                   onError={() => setImgError(true)}
                 />
-              ) : null}
+              )}
               <span className="font-display font-bold text-lg">
                 AZMA <span className="text-ochre-400">YETU</span> CBO.
               </span>
             </div>
             <p className="text-white/50 text-sm leading-relaxed max-w-xs mb-6">
-              {lang === 'en'
-                ? 'Empowering communities across Kenya through grassroots action, dignity, and hope.'
-                : 'Kuwawezesha jamii Kenya nzima kupitia hatua za msingi, heshima, na matumaini.'}
+              Empowering communities across Kenya through grassroots action, dignity, and an unshakeable belief in human potential.
             </p>
-            {/* Socials */}
             <div className="flex items-center gap-3">
               {socials.map(({ Icon, href, label }) => (
                 <a
@@ -107,17 +100,14 @@ export function Footer() {
 
           {/* Links */}
           <div>
-            <h4 className="font-display font-bold text-white mb-5 text-sm uppercase tracking-widest text-ochre-400">
-              {lang === 'en' ? 'Quick Links' : 'Viungo vya Haraka'}
+            <h4 className="font-display font-bold text-ochre-400 mb-5 text-sm uppercase tracking-widest">
+              Quick Links
             </h4>
             <ul className="space-y-3">
               {links.map((link) => (
                 <li key={link.href}>
-                  <a
-                    href={link.href}
-                    className="text-white/50 hover:text-white text-sm transition-colors"
-                  >
-                    {lang === 'en' ? link.en : link.sw}
+                  <a href={link.href} className="text-white/50 hover:text-white text-sm transition-colors">
+                    {link.label}
                   </a>
                 </li>
               ))}
@@ -126,8 +116,8 @@ export function Footer() {
 
           {/* Contact */}
           <div>
-            <h4 className="font-display font-bold text-white mb-5 text-sm uppercase tracking-widest text-ochre-400">
-              {lang === 'en' ? 'Get in Touch' : 'Wasiliana Nasi'}
+            <h4 className="font-display font-bold text-ochre-400 mb-5 text-sm uppercase tracking-widest">
+              Get in Touch
             </h4>
             <ul className="space-y-4 mb-6">
               <li className="flex items-start gap-3 text-white/50 text-sm">
@@ -145,21 +135,18 @@ export function Footer() {
               </li>
             </ul>
             <p className="text-white/30 text-xs">
-              {lang === 'en' ? 'Follow us:' : 'Tufuate:'}{' '}
-              <span className="text-ochre-400/60">@azmayetucbo</span>
+              Follow us on all platforms:{' '}
+              <span className="text-ochre-400/70 font-medium">@azmayetucbo</span>
             </p>
           </div>
         </div>
 
         <div className="border-t border-white/10 pt-8 flex flex-col sm:flex-row justify-between items-center gap-4">
           <p className="text-white/30 text-xs">
-            © {new Date().getFullYear()} Azma Yetu CBO.{' '}
-            {lang === 'en' ? 'All rights reserved.' : 'Haki zote zimehifadhiwa.'}
+            © {new Date().getFullYear()} Azma Yetu CBO. All rights reserved.
           </p>
           <p className="text-white/20 text-xs">
-            {lang === 'en'
-              ? 'Community Based Organization · Nairobi, Kenya'
-              : 'Shirika la Jamii · Nairobi, Kenya'}
+            Community Based Organization · Nairobi, Kenya
           </p>
         </div>
       </div>

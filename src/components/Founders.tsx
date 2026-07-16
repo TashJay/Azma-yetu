@@ -1,13 +1,23 @@
 import { motion } from 'motion/react';
-import { useLanguage } from '../contexts/LanguageContext';
 import { Quote } from 'lucide-react';
 
-export function Founders() {
-  const { lang } = useLanguage();
+const credentials = [
+  'Communications & PR Expert',
+  'Board Member — INVEST in Kenya',
+  'Community Development Advocate',
+];
 
+const bio = [
+  'With a strong background in Communication, Research, and Public Relations, Khadija brings a wealth of expertise and a deeply personal commitment to the work of Azma Yetu CBO.',
+  'Before founding Azma Yetu, she spent years working at the intersection of media, civic engagement, and community development — building the relationships and understanding that now shape every program the organisation runs.',
+  'She currently serves on the Board of Directors for INVEST in Kenya, demonstrating her standing among Kenya\'s civil society leadership and her commitment to long-term national development.',
+  'Her true passion lies in building resilient, empowered communities from the ground up — and in proving that the most powerful force for change is a community that believes in itself.',
+];
+
+export function Founders() {
   return (
     <section id="founders" className="py-24 md:py-32 bg-white relative overflow-hidden">
-      {/* Decorative background circle */}
+      {/* Decorative background circles */}
       <motion.div
         className="absolute -top-40 -right-40 w-[500px] h-[500px] rounded-full bg-ochre-500/5 pointer-events-none"
         animate={{ scale: [1, 1.05, 1] }}
@@ -28,10 +38,10 @@ export function Founders() {
           transition={{ duration: 0.6 }}
         >
           <div className="inline-block bg-ochre-100 text-ochre-700 text-sm font-semibold uppercase tracking-widest px-4 py-1.5 rounded-full mb-6">
-            {lang === 'en' ? 'Leadership' : 'Uongozi'}
+            Leadership
           </div>
           <h2 className="font-display text-4xl md:text-5xl font-bold text-earth-900 mb-4 tracking-tight">
-            {lang === 'en' ? 'Meet Our Founder' : 'Kutana na Mwanzilishi Wetu'}
+            Meet Our Founder
           </h2>
           <motion.div
             className="w-16 h-1 bg-ochre-500 mx-auto rounded-full"
@@ -84,29 +94,33 @@ export function Founders() {
               </motion.div>
 
               <h3 className="font-display text-3xl font-bold text-earth-900 mb-1">Khadija Mustafa</h3>
-              <p className="text-ochre-600 font-semibold mb-6">
-                {lang === 'en' ? 'Founder & Director' : 'Mwanzilishi & Mkurugenzi'}
-              </p>
+              <p className="text-ochre-600 font-semibold mb-5">Founder & Director</p>
 
-              <div className="space-y-4 text-earth-600 leading-relaxed text-lg">
-                {[
-                  lang === 'en'
-                    ? 'With a strong background in Communication, Research, and Public Relations, Khadija brings a wealth of expertise to Azma Yetu CBO.'
-                    : 'Akiwa na msingi imara katika Mawasiliano, Utafiti, na Mahusiano ya Umma, Khadija analeta utaalamu mkubwa kwa Azma Yetu CBO.',
-                  lang === 'en'
-                    ? 'She currently serves on the Board of Directors for INVEST in Kenya, demonstrating her commitment to national development.'
-                    : 'Kwa sasa anatumika katika Bodi ya Wakurugenzi ya INVEST in Kenya, akionyesha kujitolea kwake katika maendeleo ya kitaifa.',
-                  lang === 'en'
-                    ? 'Her true passion lies in building resilient, empowered communities from the ground up.'
-                    : 'Mapenzi yake ya dhati yapo katika kujenga jamii zenye uthabiti na zilizowezeshwa kuanzia ngazi ya chini.',
-                ].map((text, i) => (
+              {/* Credential tags */}
+              <div className="flex flex-wrap gap-2 mb-6 justify-center md:justify-start">
+                {credentials.map((c, i) => (
+                  <motion.span
+                    key={i}
+                    initial={{ opacity: 0, scale: 0.9 }}
+                    whileInView={{ opacity: 1, scale: 1 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.35, delay: 0.1 + i * 0.08 }}
+                    className="bg-white border border-earth-200 text-earth-600 text-xs font-semibold px-3 py-1.5 rounded-full shadow-sm"
+                  >
+                    {c}
+                  </motion.span>
+                ))}
+              </div>
+
+              <div className="space-y-4 text-earth-600 leading-relaxed text-base md:text-lg">
+                {bio.map((text, i) => (
                   <motion.p
                     key={i}
                     initial={{ opacity: 0, x: 20 }}
                     whileInView={{ opacity: 1, x: 0 }}
                     viewport={{ once: true }}
-                    transition={{ duration: 0.5, delay: 0.2 + i * 0.12 }}
-                    className={i === 2 ? 'font-medium text-earth-900' : ''}
+                    transition={{ duration: 0.5, delay: 0.2 + i * 0.1 }}
+                    className={i === bio.length - 1 ? 'font-medium text-earth-800' : ''}
                   >
                     {text}
                   </motion.p>

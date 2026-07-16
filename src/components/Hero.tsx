@@ -1,18 +1,20 @@
 import { motion, useScroll, useTransform } from 'motion/react';
 import { ArrowDown } from 'lucide-react';
 import { useRef } from 'react';
-import { useLanguage } from '../contexts/LanguageContext';
+
+const words = ['Empowering', 'Communities.', 'Changing Lives.'];
+
+const heroStats = [
+  { value: '5', label: 'Focus Areas' },
+  { value: 'Est. 2020', label: 'Nairobi, Kenya' },
+  { value: '100%', label: 'Grassroots Driven' },
+];
 
 export function Hero() {
-  const { lang } = useLanguage();
   const ref = useRef<HTMLElement>(null);
   const { scrollYProgress } = useScroll({ target: ref, offset: ['start start', 'end start'] });
-  const imgY = useTransform(scrollYProgress, [0, 1], ['0%', '20%']);
+  const imgY   = useTransform(scrollYProgress, [0, 1], ['0%', '20%']);
   const opacity = useTransform(scrollYProgress, [0, 0.8], [1, 0]);
-
-  const words = lang === 'en'
-    ? ['Empowering', 'Communities.', 'Changing Lives.']
-    : ['Kuwawezesha', 'Jamii.', 'Kubadilisha Maisha.'];
 
   return (
     <section ref={ref} className="relative min-h-[100dvh] flex flex-col justify-center overflow-hidden bg-earth-900">
@@ -28,7 +30,7 @@ export function Hero() {
       {/* Gradient overlay */}
       <div className="absolute inset-0 bg-gradient-to-b from-earth-900/50 via-earth-900/30 to-earth-900/95" />
 
-      {/* Animated ochre glow orbs */}
+      {/* Animated glow orbs */}
       <motion.div
         className="absolute top-1/4 right-1/4 w-96 h-96 rounded-full bg-ochre-500/10 blur-3xl pointer-events-none"
         animate={{ scale: [1, 1.2, 1], opacity: [0.5, 0.8, 0.5] }}
@@ -60,12 +62,12 @@ export function Hero() {
             transition={{ duration: 1.5, repeat: Infinity }}
           />
           <span className="text-ochre-300 text-sm font-medium tracking-wide uppercase">
-            {lang === 'en' ? 'Azma Yetu Community Based Organization' : 'Shirika la Jamii la Azma Yetu'}
+            Azma Yetu Community Based Organization
           </span>
         </motion.div>
 
         {/* Staggered headline */}
-        <div className="mb-6">
+        <div className="mb-8">
           {words.map((word, i) => (
             <motion.div
               key={i}
@@ -89,11 +91,9 @@ export function Hero() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.6 }}
-          className="text-white/65 text-base md:text-lg max-w-xl leading-relaxed mb-10"
+          className="text-white/65 text-base md:text-lg max-w-2xl leading-relaxed mb-10"
         >
-          {lang === 'en'
-            ? 'Azma Yetu uplifts boys, women, widows, and youth — building resilient communities free from drug abuse across Kenya.'
-            : 'Azma Yetu inainua wavulana, wanawake, wajane, na vijana — ikijenga jamii imara zisizo na dawa za kulevya Kenya nzima.'}
+          Azma Yetu uplifts boys, women, widows, and youth — building resilient, self-reliant communities rooted in dignity, purpose, and hope across Kenya. Every program we run is a direct investment in the people most often left behind.
         </motion.p>
 
         {/* CTAs */}
@@ -101,7 +101,7 @@ export function Hero() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.75 }}
-          className="flex flex-wrap gap-4"
+          className="flex flex-wrap gap-4 mb-14"
         >
           <motion.a
             href="#our-work"
@@ -109,7 +109,7 @@ export function Hero() {
             whileTap={{ scale: 0.97 }}
             className="px-8 py-4 bg-ochre-500 text-earth-900 font-bold rounded-full shadow-lg shadow-ochre-500/30 transition-colors hover:bg-ochre-400"
           >
-            {lang === 'en' ? 'Our Work' : 'Kazi Yetu'}
+            Our Work
           </motion.a>
           <motion.a
             href="#contact"
@@ -117,8 +117,26 @@ export function Hero() {
             whileTap={{ scale: 0.97 }}
             className="px-8 py-4 bg-white/10 text-white font-semibold rounded-full border border-white/20 backdrop-blur-sm transition-colors hover:bg-white/20"
           >
-            {lang === 'en' ? 'Get Involved' : 'Shiriki Nasi'}
+            Get Involved
           </motion.a>
+        </motion.div>
+
+        {/* Stat strip */}
+        <motion.div
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, delay: 1 }}
+          className="flex flex-wrap items-center gap-8 pt-8 border-t border-white/10"
+        >
+          {heroStats.map((s, i) => (
+            <div key={i} className="flex items-center gap-3">
+              {i > 0 && <span className="hidden sm:block w-px h-8 bg-white/15" />}
+              <div>
+                <p className="text-ochre-400 font-display font-bold text-lg leading-none">{s.value}</p>
+                <p className="text-white/35 text-xs uppercase tracking-wider mt-0.5">{s.label}</p>
+              </div>
+            </div>
+          ))}
         </motion.div>
       </motion.div>
 
@@ -129,9 +147,7 @@ export function Hero() {
         transition={{ delay: 1.4 }}
         className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-2"
       >
-        <span className="text-white/30 text-xs uppercase tracking-widest">
-          {lang === 'en' ? 'Scroll' : 'Sogeza'}
-        </span>
+        <span className="text-white/30 text-xs uppercase tracking-widest">Scroll</span>
         <motion.div
           animate={{ y: [0, 6, 0] }}
           transition={{ repeat: Infinity, duration: 1.6, ease: 'easeInOut' }}

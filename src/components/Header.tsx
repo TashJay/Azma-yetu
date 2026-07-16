@@ -1,26 +1,24 @@
 import { motion, AnimatePresence } from 'motion/react';
-import { Menu, X, Globe } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
 import { useState, useEffect } from 'react';
-import { useLanguage } from '../contexts/LanguageContext';
+
+const navLinks = [
+  { href: '#about',    label: 'About'      },
+  { href: '#our-work', label: 'Our Work'   },
+  { href: '#founders', label: 'Leadership' },
+  { href: '#contact',  label: 'Contact'    },
+];
 
 export function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [imgError, setImgError] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const { lang, toggleLang } = useLanguage();
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 40);
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
-
-  const navLinks = [
-    { href: '#about', en: 'About', sw: 'Kutuhusu' },
-    { href: '#our-work', en: 'Our Work', sw: 'Kazi Yetu' },
-    { href: '#founders', en: 'Leadership', sw: 'Uongozi' },
-    { href: '#contact', en: 'Contact', sw: 'Wasiliana' },
-  ];
 
   return (
     <header
@@ -66,40 +64,23 @@ export function Header() {
                     : 'text-white/80 hover:text-white'
                 }`}
               >
-                {lang === 'en' ? link.en : link.sw}
+                {link.label}
               </a>
             ))}
-            <button
-              onClick={toggleLang}
-              className={`flex items-center gap-1 font-medium transition-colors ${
-                scrolled ? 'text-earth-700 hover:text-ochre-600' : 'text-white/80 hover:text-white'
-              }`}
-            >
-              <Globe className="h-4 w-4" />
-              <span>{lang === 'en' ? 'SW' : 'EN'}</span>
-            </button>
             <a
               href="#donate"
               className="px-6 py-2.5 rounded-full bg-ochre-500 text-earth-900 font-bold hover:bg-ochre-400 transition-all duration-200 shadow-md shadow-ochre-500/20 hover:-translate-y-0.5"
             >
-              {lang === 'en' ? 'Donate' : 'Changia'}
+              Donate
             </a>
           </nav>
 
           {/* Mobile controls */}
           <div className="flex md:hidden items-center gap-4">
             <button
-              onClick={toggleLang}
-              className={`flex items-center gap-1 text-sm font-medium ${
-                scrolled ? 'text-earth-700' : 'text-white'
-              }`}
-            >
-              <Globe className="h-4 w-4" />
-              {lang === 'en' ? 'SW' : 'EN'}
-            </button>
-            <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
               className={scrolled ? 'text-earth-700' : 'text-white'}
+              aria-label="Toggle menu"
             >
               {isMobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
             </button>
@@ -125,7 +106,7 @@ export function Header() {
                   onClick={() => setIsMobileMenuOpen(false)}
                   className="block px-4 py-3 rounded-xl text-earth-700 hover:text-earth-900 hover:bg-earth-50 font-medium transition-colors"
                 >
-                  {lang === 'en' ? link.en : link.sw}
+                  {link.label}
                 </a>
               ))}
               <div className="pt-4">
@@ -134,7 +115,7 @@ export function Header() {
                   onClick={() => setIsMobileMenuOpen(false)}
                   className="block text-center px-6 py-3 rounded-full bg-ochre-500 text-earth-900 font-bold hover:bg-ochre-400 transition-colors"
                 >
-                  {lang === 'en' ? 'Donate' : 'Changia'}
+                  Donate
                 </a>
               </div>
             </div>

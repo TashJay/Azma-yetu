@@ -1,38 +1,36 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { ChevronDown, HelpCircle } from 'lucide-react';
-import { useLanguage } from '../contexts/LanguageContext';
+
+const faqs = [
+  {
+    question: 'How can I volunteer with Azma Yetu?',
+    answer: 'You can join our on-ground team by filling out the contact form on this page. Our team will reach out with upcoming events, field opportunities, and volunteer roles across our five focus areas. We welcome professionals, students, and community members alike — whatever your background, there is a place for you.',
+  },
+  {
+    question: 'Where do your funds go?',
+    answer: '100% of public donations go directly to our community initiatives — boy child mentorship, women skills training, widows and widowers support programs, and drug abuse prevention. Administrative and operational costs are fully covered by our core institutional partners, which means every shilling you donate reaches the people it is meant for.',
+  },
+  {
+    question: 'Who can apply for your programs and scholarships?',
+    answer: 'Our programs are open to marginalized children, youth, women, and families within the counties we operate in. Scholarship and training applications are circulated locally through our field coordinators, community leaders, and partner schools. We prioritise those with the greatest need and least access to existing services.',
+  },
+  {
+    question: 'Can my company partner with Azma Yetu?',
+    answer: 'Yes — we actively seek corporate partnerships for CSR initiatives, employee volunteer programs, and co-funded community projects. We work with businesses of all sizes and structure partnerships that are transparent, outcomes-focused, and tailored to your organisation\'s values. Reach out to us at Azmayetucbo@gmail.com to start a conversation.',
+  },
+  {
+    question: 'Is Azma Yetu a registered organisation?',
+    answer: 'Yes. Azma Yetu CBO is a duly registered Community Based Organization in Kenya, operating in full compliance with the legal frameworks governing civil society and community organisations. We are committed to transparency, accountability, and good governance in all our operations.',
+  },
+  {
+    question: 'How do you measure and report on impact?',
+    answer: 'We track program participants across all five pillars and follow up with community field coordinators to assess outcomes at 3, 6, and 12-month intervals. Impact data is reviewed quarterly and used directly to refine programming. We share updates through our social media channels and are available to provide detailed reports to donors and partners on request.',
+  },
+];
 
 export function FAQ() {
-  const { lang } = useLanguage();
   const [openIndex, setOpenIndex] = useState<number | null>(null);
-
-  const faqs = [
-    {
-      question: lang === 'en' ? 'How can I volunteer with Azma Yetu?' : 'Nawezaje kujitolea na Azma Yetu?',
-      answer: lang === 'en'
-        ? 'You can join our on-ground team by filling out the contact form below. Our team will get back to you with upcoming events and volunteer roles across our five focus areas.'
-        : 'Unaweza kujiunga na timu yetu kwa kujaza fomu ya mawasiliano hapa chini. Timu yetu itawasiliana nawe kuhusu matukio yajayo na nafasi za kujitolea.',
-    },
-    {
-      question: lang === 'en' ? 'Where do your funds go?' : 'Pesa zenu zinaenda wapi?',
-      answer: lang === 'en'
-        ? '100% of public donations go directly to our community initiatives — boy child mentorship, women skills training, widows support programs, and drug abuse prevention. Administrative costs are covered by our core partners.'
-        : 'Asilimia 100 ya michango ya umma inaenda moja kwa moja kwenye mipango yetu ya jamii. Gharama za utawala zinalipiwa na wabia wetu wakuu.',
-    },
-    {
-      question: lang === 'en' ? 'Who can apply for your scholarships?' : 'Nani anayeweza kuomba ufadhili wenu wa masomo?',
-      answer: lang === 'en'
-        ? 'We focus on marginalized children and youth within the counties we operate in. Applications are circulated locally through our field coordinators.'
-        : 'Tunalenga watoto na vijana walio katika mazingira magumu. Maombi husambazwa katika jamii kupitia waratibu wetu wa nyanjani.',
-    },
-    {
-      question: lang === 'en' ? 'Can my company partner with Azma Yetu?' : 'Je, kampuni yangu inaweza kushirikiana na Azma Yetu?',
-      answer: lang === 'en'
-        ? 'Yes! We actively seek corporate partnerships for CSR initiatives. Reach out to us at Azmayetucbo@gmail.com to schedule a discussion.'
-        : 'Ndiyo! Tunatafuta ushirikiano wa makampuni kikamilifu. Wasiliana nasi kwa Azmayetucbo@gmail.com ili kupanga mazungumzo.',
-    },
-  ];
 
   return (
     <section className="py-24 md:py-32 relative overflow-hidden bg-[#fafafa]">
@@ -55,14 +53,12 @@ export function FAQ() {
         >
           <div className="inline-flex items-center gap-2 bg-earth-100 text-earth-600 text-sm font-semibold uppercase tracking-widest px-4 py-1.5 rounded-full mb-6">
             <HelpCircle className="w-4 h-4" />
-            {lang === 'en' ? 'Questions & Answers' : 'Maswali na Majibu'}
+            Questions &amp; Answers
           </div>
           <h2 className="font-display text-4xl md:text-5xl font-bold text-earth-900 mb-4">
-            {lang === 'en' ? 'Got questions?' : 'Una maswali?'}
+            Got questions?
           </h2>
-          <p className="text-earth-500 text-lg">
-            {lang === 'en' ? "Here are the ones we hear most often." : "Haya ndiyo yanayoulizwa mara nyingi."}
-          </p>
+          <p className="text-earth-500 text-lg">Here are the ones we hear most often.</p>
         </motion.div>
 
         <div className="space-y-3">
@@ -74,7 +70,7 @@ export function FAQ() {
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: index * 0.08 }}
+                transition={{ duration: 0.5, delay: index * 0.06 }}
                 className={`border rounded-2xl overflow-hidden transition-all duration-300 ${
                   isOpen
                     ? 'border-ochre-400/50 bg-white shadow-md shadow-ochre-500/5'
@@ -86,7 +82,7 @@ export function FAQ() {
                   className="w-full px-6 py-5 text-left flex justify-between items-center gap-4 focus:outline-none group"
                   aria-expanded={isOpen}
                 >
-                  <span className={`font-semibold text-lg transition-colors duration-200 ${isOpen ? 'text-earth-900' : 'text-earth-800 group-hover:text-earth-900'}`}>
+                  <span className={`font-semibold text-base md:text-lg transition-colors duration-200 ${isOpen ? 'text-earth-900' : 'text-earth-800 group-hover:text-earth-900'}`}>
                     {faq.question}
                   </span>
                   <motion.div
