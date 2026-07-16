@@ -10,10 +10,8 @@ const statItem = {
 };
 
 const stats = [
-  { value: '5 Pillars',       label: 'of focused community impact', bar: 'bg-ochre-500'   },
-  { value: '100%',            label: 'Donations reach programs directly', bar: 'bg-forest-700' },
-  { value: 'Est. 2020',       label: 'Founded in Nairobi, Kenya',    bar: 'bg-earth-700'   },
-  { value: 'Zero Overhead',   label: 'Admin costs covered by partners', bar: 'bg-ochre-600' },
+  { value: '5 Pillars', label: 'of focused community impact',    bar: 'bg-ochre-500'   },
+  { value: '100%',      label: 'Donations reach programs directly', bar: 'bg-forest-700' },
 ];
 
 export function About() {
