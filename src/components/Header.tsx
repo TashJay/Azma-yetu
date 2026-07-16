@@ -36,7 +36,7 @@ export function Header() {
               <img
                 src="/logo/azmalogo.png"
                 alt="Azma Yetu Logo"
-                className="h-12 w-auto object-contain drop-shadow-sm"
+                className="h-16 w-auto object-contain drop-shadow-sm"
                 onError={() => setImgError(true)}
               />
             ) : (
