@@ -1,76 +1,105 @@
-import { motion } from 'motion/react';
+import { motion, AnimatePresence } from 'motion/react';
 import { Menu, X, Globe } from 'lucide-react';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useLanguage } from '../contexts/LanguageContext';
 
 export function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [imgError, setImgError] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
   const { lang, toggleLang } = useLanguage();
 
+  useEffect(() => {
+    const handleScroll = () => setScrolled(window.scrollY > 40);
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  const navLinks = [
+    { href: '#about', en: 'About', sw: 'Kutuhusu' },
+    { href: '#our-work', en: 'Our Work', sw: 'Kazi Yetu' },
+    { href: '#founders', en: 'Leadership', sw: 'Uongozi' },
+    { href: '#contact', en: 'Contact', sw: 'Wasiliana' },
+  ];
+
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-white/70 backdrop-blur-md border-b border-earth-100">
+    <header
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+        scrolled
+          ? 'bg-white/90 backdrop-blur-md shadow-sm border-b border-earth-100'
+          : 'bg-transparent'
+      }`}
+    >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-20">
-          {/* Left Branding */}
-          <div className="flex-shrink-0 flex items-center z-10">
-            <a href="#" className="flex items-center gap-3">
-              {!imgError ? (
-                <img 
-                  src="/logo/azmalogo.png" 
-                  alt="Azma Yetu Logo" 
-                  className="h-12 sm:h-16 w-auto object-contain drop-shadow-sm" 
-                  onError={() => setImgError(true)} 
-                />
-              ) : (
-                <div className="h-10 w-10 sm:h-14 sm:w-14 bg-ochre-100 border-2 border-dashed border-ochre-300 rounded-full flex items-center justify-center text-xs text-ochre-700 font-medium">
-                  Logo
-                </div>
-              )}
-              <span className="font-display font-bold text-base sm:text-lg tracking-tight drop-shadow-sm flex items-center whitespace-pre pt-1">
-                <span className="text-earth-900">AZMA </span>
-                <span className="text-amber-800 drop-shadow-md">YETU </span>
-                <span className="text-earth-900">CBO</span>
-                <span className="text-ochre-500">.</span>
-              </span>
-            </a>
-          </div>
-          
-          {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center space-x-8">
-            <a href="#about" className="text-earth-700 hover:text-earth-900 font-medium transition-colors">{lang === 'en' ? 'About Us' : 'Kutuhusu'}</a>
-            <a href="#initiatives" className="text-earth-700 hover:text-earth-900 font-medium transition-colors">{lang === 'en' ? 'Initiatives' : 'Mipango'}</a>
-            <a href="#impact" className="text-earth-700 hover:text-earth-900 font-medium transition-colors">{lang === 'en' ? 'Our Impact' : 'Athari Zetu'}</a>
-            
+          {/* Logo */}
+          <a href="#" className="flex items-center gap-3 flex-shrink-0">
+            {!imgError ? (
+              <img
+                src="/logo/azmalogo.png"
+                alt="Azma Yetu Logo"
+                className="h-12 w-auto object-contain drop-shadow-sm"
+                onError={() => setImgError(true)}
+              />
+            ) : (
+              <div className="h-10 w-10 bg-ochre-100 border-2 border-dashed border-ochre-300 rounded-full flex items-center justify-center text-xs text-ochre-700 font-medium">
+                AY
+              </div>
+            )}
+            <span className="font-display font-bold text-base tracking-tight flex items-center whitespace-pre">
+              <span className={scrolled ? 'text-earth-900' : 'text-white'}>AZMA </span>
+              <span className={scrolled ? 'text-ochre-600' : 'text-ochre-400'}>YETU </span>
+              <span className={scrolled ? 'text-earth-900' : 'text-white'}>CBO</span>
+              <span className="text-ochre-500">.</span>
+            </span>
+          </a>
+
+          {/* Desktop nav */}
+          <nav className="hidden md:flex items-center gap-8">
+            {navLinks.map((link) => (
+              <a
+                key={link.href}
+                href={link.href}
+                className={`font-medium transition-colors ${
+                  scrolled
+                    ? 'text-earth-700 hover:text-earth-900'
+                    : 'text-white/80 hover:text-white'
+                }`}
+              >
+                {lang === 'en' ? link.en : link.sw}
+              </a>
+            ))}
             <button
               onClick={toggleLang}
-              className="flex items-center space-x-1 text-earth-800 hover:text-ochre-600 font-medium transition-colors"
-              title="Toggle Language"
+              className={`flex items-center gap-1 font-medium transition-colors ${
+                scrolled ? 'text-earth-700 hover:text-ochre-600' : 'text-white/80 hover:text-white'
+              }`}
             >
-              <Globe className="h-5 w-5" />
+              <Globe className="h-4 w-4" />
               <span>{lang === 'en' ? 'SW' : 'EN'}</span>
             </button>
-
-            <a 
-              href="#contact" 
-              className="px-6 py-2.5 rounded-full bg-earth-900 text-white font-medium hover:bg-earth-800 transition-colors shadow-sm"
+            <a
+              href="#donate"
+              className="px-6 py-2.5 rounded-full bg-ochre-500 text-earth-900 font-bold hover:bg-ochre-400 transition-all duration-200 shadow-md shadow-ochre-500/20 hover:-translate-y-0.5"
             >
-              {lang === 'en' ? 'Get Involved' : 'Shiriki'}
+              {lang === 'en' ? 'Donate' : 'Changia'}
             </a>
           </nav>
 
-          {/* Mobile Menu Button */}
-          <div className="flex md:hidden items-center space-x-4">
+          {/* Mobile controls */}
+          <div className="flex md:hidden items-center gap-4">
             <button
               onClick={toggleLang}
-              className="flex items-center text-earth-800 hover:text-ochre-600 font-medium transition-colors"
+              className={`flex items-center gap-1 text-sm font-medium ${
+                scrolled ? 'text-earth-700' : 'text-white'
+              }`}
             >
-              <Globe className="h-5 w-5" />
-              <span className="ml-1 text-sm">{lang === 'en' ? 'SW' : 'EN'}</span>
+              <Globe className="h-4 w-4" />
+              {lang === 'en' ? 'SW' : 'EN'}
             </button>
-            <button 
+            <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="text-earth-700 hover:text-earth-900 focus:outline-none"
+              className={scrolled ? 'text-earth-700' : 'text-white'}
             >
               {isMobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
             </button>
@@ -78,19 +107,40 @@ export function Header() {
         </div>
       </div>
 
-      {/* Mobile Navigation */}
-      {isMobileMenuOpen && (
-        <motion.div 
-          initial={{ opacity: 0, y: -10 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="md:hidden bg-white border-b border-earth-100 px-4 pt-2 pb-6 space-y-4 shadow-lg"
-        >
-          <a href="#about" className="block text-earth-700 font-medium hover:text-earth-900" onClick={() => setIsMobileMenuOpen(false)}>{lang === 'en' ? 'About Us' : 'Kutuhusu'}</a>
-          <a href="#initiatives" className="block text-earth-700 font-medium hover:text-earth-900" onClick={() => setIsMobileMenuOpen(false)}>{lang === 'en' ? 'Initiatives' : 'Mipango'}</a>
-          <a href="#impact" className="block text-earth-700 font-medium hover:text-earth-900" onClick={() => setIsMobileMenuOpen(false)}>{lang === 'en' ? 'Our Impact' : 'Athari Zetu'}</a>
-          <a href="#contact" className="block text-earth-900 font-medium" onClick={() => setIsMobileMenuOpen(false)}>{lang === 'en' ? 'Get Involved' : 'Shiriki'}</a>
-        </motion.div>
-      )}
+      {/* Mobile menu */}
+      <AnimatePresence>
+        {isMobileMenuOpen && (
+          <motion.div
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -10 }}
+            transition={{ duration: 0.2 }}
+            className="md:hidden bg-white border-t border-earth-100 shadow-lg"
+          >
+            <div className="px-4 py-6 space-y-1">
+              {navLinks.map((link) => (
+                <a
+                  key={link.href}
+                  href={link.href}
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  className="block px-4 py-3 rounded-xl text-earth-700 hover:text-earth-900 hover:bg-earth-50 font-medium transition-colors"
+                >
+                  {lang === 'en' ? link.en : link.sw}
+                </a>
+              ))}
+              <div className="pt-4">
+                <a
+                  href="#donate"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  className="block text-center px-6 py-3 rounded-full bg-ochre-500 text-earth-900 font-bold hover:bg-ochre-400 transition-colors"
+                >
+                  {lang === 'en' ? 'Donate' : 'Changia'}
+                </a>
+              </div>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </header>
   );
 }

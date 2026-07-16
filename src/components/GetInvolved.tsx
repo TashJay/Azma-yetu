@@ -1,192 +1,146 @@
 import { motion } from 'motion/react';
-import { Heart, Handshake, Landmark, ArrowRight } from 'lucide-react';
+import { Heart, Handshake, Users, ArrowRight, Mail, User, MessageSquare } from 'lucide-react';
+import { useState } from 'react';
 import { useLanguage } from '../contexts/LanguageContext';
 
 export function GetInvolved() {
   const { lang } = useLanguage();
+  const [form, setForm] = useState({ name: '', email: '', message: '' });
 
-  const waysToHelp = [
+  const cards = [
     {
-      title: lang === 'en' ? 'Volunteer' : 'Jitolee',
-      description: lang === 'en' ? 'Offer your time and skills. Join our on-ground team to facilitate workshops, health drives, and clean-ups.' : 'Jiunge na timu yetu ya mashinani kuwezesha warsha, kampeni za afya na usafi.',
-      action: lang === 'en' ? 'Join the team' : 'Jiunge na timu',
-      icon: Heart,
-      color: 'bg-rose-50 text-rose-600',
-      link: '#contact'
+      icon: Users,
+      color: 'bg-sky-50 text-sky-600 border-sky-100',
+      en: { title: 'Volunteer', desc: 'Give your time and skills to programs that directly serve communities across Kenya.' },
+      sw: { title: 'Jitolee', desc: 'Toa wakati na ujuzi wako kwa programu zinazohudumia moja kwa moja jamii Kenya nzima.' },
     },
     {
-      title: lang === 'en' ? 'Partner With Us' : 'Shirikiana Nasi',
-      description: lang === 'en' ? 'We welcome corporate and institutional partnerships to scale our impact across various Kenyan counties.' : 'Tunakaribisha ubia na mashirika ili kupanua wigo wetu katika kaunti mbalimbali za Kenya.',
-      action: lang === 'en' ? 'Become a partner' : 'Kuwa mbia',
       icon: Handshake,
-      color: 'bg-emerald-50 text-emerald-600',
-      link: '#contact'
+      color: 'bg-forest-900/5 text-forest-700 border-forest-900/10',
+      en: { title: 'Partner', desc: 'Collaborate with us as an organization, business, or institution to expand our reach and impact.' },
+      sw: { title: 'Shirikiana', desc: 'Fanya kazi nasi kama shirika, biashara, au taasisi ili kupanua wigo na athari zetu.' },
     },
     {
-      title: lang === 'en' ? 'Donate' : 'Tuma Mchango',
-      description: lang === 'en' ? 'Your financial contributions directly fund our essential community projects, education, and health initiatives.' : 'Michango yako inafadhili moja kwa moja miradi yetu muhimu ya kijamii, elimu na afya.',
-      action: lang === 'en' ? 'Make a donation' : 'Changia',
-      icon: Landmark,
-      color: 'bg-ochre-50 text-ochre-600',
-      link: '#contact'
-    }
+      icon: Heart,
+      color: 'bg-rose-50 text-rose-500 border-rose-100',
+      en: { title: 'Donate', desc: 'Your contribution funds real programs that change lives — 100% goes directly to our initiatives.' },
+      sw: { title: 'Changia', desc: 'Mchango wako unafadhili programu halisi zinazobadilisha maisha — 100% inaenda moja kwa moja kwa mipango yetu.' },
+    },
   ];
 
-  return (
-    <section className="py-24 md:py-32 bg-earth-50/50 backdrop-blur-sm border-t border-earth-100 relative overflow-hidden">
-      <div className="absolute inset-0 bg-[radial-gradient(#8D6E6333_1px,transparent_1px)] bg-[size:20px_20px] opacity-20 pointer-events-none"></div>
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <motion.div 
-          className="text-center max-w-3xl mx-auto mb-16"
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.6 }}
-        >
-          <h2 className="text-earth-700 font-semibold tracking-wide uppercase text-sm mb-3">{lang === 'en' ? 'Get Involved' : 'Shiriki Leo'}</h2>
-          <h3 className="font-display text-4xl font-bold text-earth-900 mb-6">{lang === 'en' ? 'Be the Catalyst for Change' : 'Kuwa Kichocheo cha Mabadiliko'}</h3>
-          <p className="text-lg text-earth-700/80">
-            {lang === 'en' 
-              ? 'Azma Yetu thrives on the collective effort of individuals and partners. Here is how you can step in and make a monumental difference.'
-              : 'Azma Yetu inastawi kupitia juhudi za pamoja za watu na wabia. Hivi ndivyo unavyoweza kuingilia kati na kuleta mabadiliko makubwa.'}
-          </p>
-        </motion.div>
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    const subject = encodeURIComponent(lang === 'en' ? 'Getting Involved with Azma Yetu' : 'Kushiriki na Azma Yetu');
+    const body = encodeURIComponent(`Name: ${form.name}\n\n${form.message}`);
+    window.location.href = `mailto:Azmayetucbo@gmail.com?subject=${subject}&body=${body}`;
+  };
 
-        <div className="grid md:grid-cols-3 gap-8">
-          {waysToHelp.map((way, index) => {
-            const Icon = way.icon;
+  return (
+    <section id="contact" className="py-24 md:py-36 bg-[#fafafa]">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Header */}
+        <div className="text-center max-w-2xl mx-auto mb-16">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+          >
+            <div className="inline-block bg-ochre-100 text-ochre-700 text-sm font-semibold uppercase tracking-widest px-4 py-1.5 rounded-full mb-6">
+              {lang === 'en' ? 'Join the Movement' : 'Jiunge na Harakati'}
+            </div>
+            <h2 className="font-display text-4xl md:text-5xl font-bold text-earth-900 mb-5 leading-tight">
+              {lang === 'en' ? 'How will you show up?' : 'Utajionyesha vipi?'}
+            </h2>
+            <p className="text-earth-500 text-lg">
+              {lang === 'en'
+                ? 'There are many ways to be part of Azma Yetu. Find yours.'
+                : 'Kuna njia nyingi za kuwa sehemu ya Azma Yetu. Pata yako.'}
+            </p>
+          </motion.div>
+        </div>
+
+        {/* Way cards */}
+        <div className="grid md:grid-cols-3 gap-6 mb-20">
+          {cards.map((card, i) => {
+            const Icon = card.icon;
+            const content = lang === 'en' ? card.en : card.sw;
             return (
               <motion.div
-                key={way.title}
-                initial={{ opacity: 0, y: 40 }}
+                key={i}
+                initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-50px" }}
-                transition={{ duration: 0.7, delay: index * 0.15, ease: "easeOut" }}
-                className="bg-white p-8 md:p-10 rounded-3xl shadow-sm border border-earth-100 flex flex-col items-center text-center hover:shadow-xl hover:-translate-y-2 transition-all group"
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: i * 0.1 }}
+                className="bg-white border border-earth-100 rounded-3xl p-8 shadow-sm hover:shadow-md transition-all duration-300 hover:-translate-y-1"
               >
-                <motion.div 
-                  initial={{ scale: 0, rotate: -45 }}
-                  whileInView={{ scale: 1, rotate: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ 
-                    type: "spring", 
-                    stiffness: 200, 
-                    damping: 10,
-                    delay: index * 0.15 + 0.3 
-                  }}
-                  className={`w-16 h-16 rounded-full flex items-center justify-center mb-6 transition-transform group-hover:scale-110 group-hover:rotate-6 ${way.color}`}
-                >
-                  <Icon className="h-8 w-8" />
-                </motion.div>
-                <h4 className="text-2xl font-bold text-earth-900 mb-3">{way.title}</h4>
-                <p className="text-earth-700/80 leading-relaxed flex-grow mb-8">
-                  {way.description}
-                </p>
-                <motion.a 
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
-                  href={way.link} 
-                  className="font-medium text-earth-800 hover:text-ochre-600 transition-colors inline-flex items-center mt-auto"
-                >
-                  {way.action} <ArrowRight className="ml-1 h-4 w-4" />
-                </motion.a>
+                <div className={`inline-flex items-center justify-center w-14 h-14 rounded-2xl border ${card.color} mb-6`}>
+                  <Icon className="w-7 h-7" />
+                </div>
+                <h3 className="font-display text-2xl font-bold text-earth-900 mb-3">{content.title}</h3>
+                <p className="text-earth-500 leading-relaxed">{content.desc}</p>
               </motion.div>
             );
           })}
         </div>
 
-        <motion.div 
-          initial={{ opacity: 0, y: 40 }}
+        {/* Contact form */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.8 }}
-          className="mt-24 max-w-4xl mx-auto"
+          viewport={{ once: true }}
+          transition={{ duration: 0.7 }}
+          className="max-w-2xl mx-auto bg-earth-900 rounded-3xl p-8 md:p-12 shadow-xl"
         >
-          <div className="bg-white p-8 md:p-12 rounded-3xl shadow-xl border border-earth-100 relative overflow-hidden">
-            {/* Decorative element for the form */}
-            <div className="absolute top-0 right-0 w-64 h-64 bg-ochre-500/10 rounded-full blur-3xl -mr-32 -mt-32"></div>
+          <h3 className="font-display text-3xl font-bold text-white mb-2">
+            {lang === 'en' ? 'Send us a message' : 'Tutumie ujumbe'}
+          </h3>
+          <p className="text-white/50 mb-8">
+            {lang === 'en' ? 'We\'ll get back to you within 48 hours.' : 'Tutawasiliana nawe ndani ya masaa 48.'}
+          </p>
 
-            <div className="text-center mb-8 relative z-10">
-              <h3 className="font-display text-3xl font-bold text-earth-900 mb-2">
-                {lang === 'en' ? 'Reach Out to Us' : 'Wasiliana Nasi'}
-              </h3>
-              <p className="text-earth-600">
-                {lang === 'en' ? 'Have questions or want to collaborate? Send us a message.' : 'Una maswali au unataka kushirikiana? Tutumie ujumbe.'}
-              </p>
+          <form onSubmit={handleSubmit} className="space-y-5">
+            <div className="relative">
+              <User className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-white/30" />
+              <input
+                type="text"
+                required
+                placeholder={lang === 'en' ? 'Your name' : 'Jina lako'}
+                value={form.name}
+                onChange={(e) => setForm({ ...form, name: e.target.value })}
+                className="w-full bg-white/10 border border-white/10 text-white placeholder-white/30 rounded-2xl pl-12 pr-5 py-4 focus:outline-none focus:border-ochre-500/60 transition-colors"
+              />
             </div>
-            <form 
-              onSubmit={(e) => { 
-                e.preventDefault(); 
-                const form = e.currentTarget as HTMLFormElement;
-                const name = (form.elements.namedItem('name') as HTMLInputElement).value;
-                const email = (form.elements.namedItem('email') as HTMLInputElement).value;
-                const subject = (form.elements.namedItem('subject') as HTMLSelectElement).value;
-                const message = (form.elements.namedItem('message') as HTMLTextAreaElement).value;
-                
-                const mailtoUrl = `mailto:Azmayetucbo@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`)}`;
-                window.location.href = mailtoUrl;
-              }} 
-              className="space-y-6 relative z-10"
+            <div className="relative">
+              <Mail className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-white/30" />
+              <input
+                type="email"
+                required
+                placeholder={lang === 'en' ? 'Your email' : 'Barua pepe yako'}
+                value={form.email}
+                onChange={(e) => setForm({ ...form, email: e.target.value })}
+                className="w-full bg-white/10 border border-white/10 text-white placeholder-white/30 rounded-2xl pl-12 pr-5 py-4 focus:outline-none focus:border-ochre-500/60 transition-colors"
+              />
+            </div>
+            <div className="relative">
+              <MessageSquare className="absolute left-4 top-5 w-5 h-5 text-white/30" />
+              <textarea
+                required
+                rows={4}
+                placeholder={lang === 'en' ? 'How would you like to get involved?' : 'Ungependa kushiriki vipi?'}
+                value={form.message}
+                onChange={(e) => setForm({ ...form, message: e.target.value })}
+                className="w-full bg-white/10 border border-white/10 text-white placeholder-white/30 rounded-2xl pl-12 pr-5 py-4 focus:outline-none focus:border-ochre-500/60 transition-colors resize-none"
+              />
+            </div>
+            <button
+              type="submit"
+              className="w-full flex items-center justify-center gap-2 py-4 bg-ochre-500 hover:bg-ochre-400 text-earth-900 font-bold rounded-2xl transition-all duration-200 hover:-translate-y-0.5 shadow-lg shadow-ochre-500/20"
             >
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div className="text-left">
-                  <label htmlFor="name" className="block text-sm font-medium text-earth-800 mb-2">{lang === 'en' ? 'Full Name' : 'Jina Kamili'}</label>
-                  <input 
-                    type="text" 
-                    id="name" 
-                    name="name"
-                    required 
-                    className="w-full px-4 py-3 min-h-[48px] rounded-xl border-2 border-earth-600 focus:ring-2 focus:ring-ochre-500 focus:border-ochre-500 bg-white/60 focus:bg-white transition-colors text-earth-900"
-                    placeholder={lang === 'en' ? "Jane Doe" : "Amina Juma"}
-                  />
-                </div>
-                <div className="text-left">
-                  <label htmlFor="email" className="block text-sm font-medium text-earth-800 mb-2">{lang === 'en' ? 'Email Address' : 'Barua Pepe'}</label>
-                  <input 
-                    type="email" 
-                    id="email" 
-                    name="email"
-                    required 
-                    className="w-full px-4 py-3 min-h-[48px] rounded-xl border-2 border-earth-600 focus:ring-2 focus:ring-ochre-500 focus:border-ochre-500 bg-white/60 focus:bg-white transition-colors text-earth-900"
-                    placeholder="example@email.com"
-                  />
-                </div>
-              </div>
-              
-              <div className="text-left">
-                <label htmlFor="subject" className="block text-sm font-medium text-earth-800 mb-2">{lang === 'en' ? 'Subject' : 'Kichwa cha Habari'}</label>
-                <select id="subject" name="subject" className="w-full px-4 py-3 min-h-[48px] rounded-xl border-2 border-earth-600 focus:ring-2 focus:ring-ochre-500 focus:border-ochre-500 bg-white/60 focus:bg-white transition-colors text-earth-900">
-                  <option>{lang === 'en' ? 'General Inquiry' : 'Swali la Ujumla'}</option>
-                  <option>{lang === 'en' ? 'Volunteer Opportunities' : 'Nafasi za Kujitolea'}</option>
-                  <option>{lang === 'en' ? 'Partnership Proposal' : 'Pendekezo la Ubia'}</option>
-                  <option>{lang === 'en' ? 'Make a Donation' : 'Tuma Mchango'}</option>
-                </select>
-              </div>
-
-              <div className="text-left">
-                <label htmlFor="message" className="block text-sm font-medium text-earth-800 mb-2">{lang === 'en' ? 'Message' : 'Ujumbe'}</label>
-                <textarea 
-                  id="message" 
-                  name="message"
-                  required 
-                  rows={4} 
-                  className="w-full px-4 py-3 min-h-[48px] rounded-xl border-2 border-earth-600 focus:ring-2 focus:ring-ochre-500 focus:border-ochre-500 bg-white/60 focus:bg-white transition-colors resize-y text-earth-900"
-                  placeholder={lang === 'en' ? "How can we build a brighter tomorrow together?" : "Tunawezaje kujenga kesho bora pamoja?"}
-                ></textarea>
-              </div>
-
-              <div className="text-center mt-8">
-                <motion.button 
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  type="submit" 
-                  className="inline-flex items-center justify-center px-8 py-4 min-h-[48px] w-full sm:w-auto rounded-full bg-ochre-500 text-earth-900 font-bold hover:bg-ochre-400 focus:ring-4 focus:ring-ochre-200 transition-all text-lg shadow-md hover:-translate-y-1"
-                >
-                  {lang === 'en' ? 'Send Message' : 'Tuma Ujumbe'}
-                </motion.button>
-              </div>
-            </form>
-          </div>
+              {lang === 'en' ? 'Send Message' : 'Tuma Ujumbe'}
+              <ArrowRight className="w-5 h-5" />
+            </button>
+          </form>
         </motion.div>
       </div>
     </section>

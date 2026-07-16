@@ -1,51 +1,47 @@
-import { ArrowRight } from 'lucide-react';
 import { motion } from 'motion/react';
+import { ArrowRight } from 'lucide-react';
 import { useLanguage } from '../contexts/LanguageContext';
 
 export function CallToAction() {
   const { lang } = useLanguage();
 
   return (
-    <section className="relative py-24 md:py-32 overflow-hidden bg-earth-800/80 backdrop-blur-sm">
-      <div className="absolute inset-0 bg-earth-900/40"></div>
-      
-      {/* Decorative patterns */}
-      <div className="absolute top-0 right-0 -mr-20 -mt-20 w-96 h-96 bg-ochre-500/20 rounded-full blur-3xl"></div>
-      <div className="absolute bottom-0 left-0 -ml-20 -mb-20 w-80 h-80 bg-earth-600/50 rounded-full blur-3xl"></div>
+    <section className="py-24 bg-ochre-500 relative overflow-hidden">
+      {/* Decorative circles */}
+      <div className="absolute -top-20 -right-20 w-80 h-80 bg-ochre-400 rounded-full opacity-40" />
+      <div className="absolute -bottom-24 -left-16 w-64 h-64 bg-ochre-600 rounded-full opacity-30" />
 
-      <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-white">
+      <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
         <motion.div
-          initial={{ opacity: 0, scale: 0.95, y: 30 }}
-          whileInView={{ opacity: 1, scale: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.8, type: "spring" }}
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.7 }}
         >
-          <h2 className="font-display text-4xl sm:text-5xl font-bold mb-6">
-            {lang === 'en' ? 'Ready to Make a Difference?' : 'Uko Tayari Kuleta Mabadiliko?'}
+          <h2 className="font-display text-4xl md:text-5xl font-bold text-earth-900 mb-6 leading-tight">
+            {lang === 'en'
+              ? 'Be part of the change.'
+              : 'Kuwa sehemu ya mabadiliko.'}
           </h2>
-          <p className="text-xl text-stone-200 mb-10 leading-relaxed font-light">
-            {lang === 'en' 
-              ? 'Whether you want to volunteer your time, donate, or partner with us, your contribution helps us empower more lives across Kenya.'
-              : 'Iwe unataka kujitolea muda wako, kuchangia, au kushirikiana nasi, mchango wako unatusaidia kuwezesha maisha zaidi kote nchini Kenya.'}
+          <p className="text-earth-800/70 text-lg md:text-xl mb-10 max-w-xl mx-auto">
+            {lang === 'en'
+              ? 'Whether you volunteer, partner, or donate — every action builds a stronger community.'
+              : 'Iwe unajitolea, unashirikiana, au kuchangia — kila hatua inajenga jamii imara zaidi.'}
           </p>
-          <div className="flex flex-col sm:flex-row justify-center gap-4">
-            <motion.a 
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              href="#contact" 
-              className="inline-flex items-center justify-center px-8 py-4 rounded-full bg-ochre-500 text-earth-900 font-bold hover:bg-ochre-400 transition-colors text-lg"
+          <div className="flex flex-wrap gap-4 justify-center">
+            <a
+              href="#contact"
+              className="inline-flex items-center gap-2 px-8 py-4 bg-earth-900 text-white font-bold rounded-full hover:bg-earth-800 transition-all duration-200 hover:-translate-y-0.5 shadow-lg"
             >
-              {lang === 'en' ? 'Get Involved Now' : 'Shiriki Sasa'}
-              <ArrowRight className="ml-2 h-5 w-5" />
-            </motion.a>
-            <motion.a 
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              href="mailto:Azmayetucbo@gmail.com" 
-              className="inline-flex items-center justify-center px-8 py-4 rounded-full bg-transparent border-2 border-white/30 text-white font-medium hover:bg-white/10 transition-colors text-lg"
+              {lang === 'en' ? 'Get Involved' : 'Shiriki Nasi'}
+              <ArrowRight className="w-4 h-4" />
+            </a>
+            <a
+              href="#donate"
+              className="inline-flex items-center gap-2 px-8 py-4 bg-white/30 text-earth-900 font-bold rounded-full border-2 border-earth-900/20 hover:bg-white/50 transition-all duration-200 hover:-translate-y-0.5"
             >
-              {lang === 'en' ? 'Contact Us' : 'Wasiliana Nasi'}
-            </motion.a>
+              {lang === 'en' ? 'Donate Now' : 'Changia Sasa'}
+            </a>
           </div>
         </motion.div>
       </div>

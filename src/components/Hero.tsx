@@ -1,143 +1,114 @@
 import { motion } from 'motion/react';
-import { ArrowRight, Users, HeartHandshake, Leaf } from 'lucide-react';
+import { ArrowDown } from 'lucide-react';
 import { useLanguage } from '../contexts/LanguageContext';
-import { Counter } from './Counter';
-import { TreeAnimation } from './TreeAnimation';
 
 export function Hero() {
   const { lang } = useLanguage();
 
   return (
-    <section className="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden bg-earth-900">
-      {/* Background Image Setup with Overlay */}
-      <div className="absolute inset-0 z-0">
-        <img 
-          src="https://images.unsplash.com/photo-1542810634-71277d95dc8c?q=80&w=2070&auto=format&fit=crop" 
-          alt="Diverse Kenyan community members collaborating cheerfully outdoors" 
-          className="w-full h-full object-cover"
-          referrerPolicy="no-referrer"
+    <section className="relative min-h-[100dvh] flex flex-col justify-center overflow-hidden bg-earth-900">
+      {/* Background image */}
+      <div className="absolute inset-0">
+        <img
+          src="/src/assets/images/kenyan_community_hero_1780695687550.png"
+          alt="Community"
+          className="w-full h-full object-cover opacity-30"
         />
-        <div className="absolute inset-0 bg-earth-900/50 mix-blend-multiply"></div>
-        <div className="absolute inset-0 bg-earth-900/75"></div>
-        <div className="absolute inset-0 bg-gradient-to-t from-earth-900 via-earth-900/80 to-transparent"></div>
-        
-        {/* Animated Horizon Trees as Silhouettes */}
-        <div className="absolute bottom-0 left-0 right-0 h-64 pointer-events-none flex items-end justify-between px-4 sm:px-20 z-0 select-none overflow-hidden">
-           <TreeAnimation className="w-48 sm:w-80 h-48 sm:h-80 text-black opacity-70 transform -translate-x-10 translate-y-6" />
-           <TreeAnimation className="w-32 h-32 text-black opacity-50 transform translate-y-2 hidden md:block" />
-           <TreeAnimation className="w-64 sm:w-96 h-64 sm:h-96 text-black opacity-80 transform translate-x-12 translate-y-12" />
-        </div>
+        <div className="absolute inset-0 bg-gradient-to-b from-earth-900/60 via-earth-900/40 to-earth-900/90" />
       </div>
 
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-8 items-center">
-          <motion.div 
+      {/* Decorative ochre line top */}
+      <div className="absolute top-0 left-0 right-0 h-1 bg-ochre-500" />
+
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-32 md:py-48">
+        <div className="max-w-4xl">
+          {/* Badge */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="inline-flex items-center gap-2 bg-ochre-500/20 border border-ochre-500/40 rounded-full px-4 py-1.5 mb-8"
+          >
+            <span className="w-2 h-2 rounded-full bg-ochre-400 animate-pulse" />
+            <span className="text-ochre-300 text-sm font-medium tracking-wide uppercase">
+              {lang === 'en' ? 'Azma Yetu Community Based Organization' : 'Shirika la Jamii la Azma Yetu'}
+            </span>
+          </motion.div>
+
+          {/* Headline */}
+          <motion.h1
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
-            className="max-w-2xl"
+            transition={{ duration: 0.7, delay: 0.1 }}
+            className="font-display text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold text-white leading-[1.05] tracking-tight mb-8"
           >
-            <div className="inline-flex items-center rounded-full px-4 py-1.5 bg-earth-800/80 backdrop-blur-md text-ochre-400 font-medium text-sm mb-6 border border-earth-700 w-fit">
-              <span className="flex h-2 w-2 rounded-full bg-ochre-500 mr-2 animate-pulse"></span>
-              {lang === 'en' ? 'Azma Yetu Community Based Organization' : 'Shirika la Kijamii la Azma Yetu'}
-            </div>
-            <h1 className="font-display text-[clamp(2.5rem,10vw,4.5rem)] sm:text-6xl lg:text-7xl font-bold tracking-tight text-white mb-6 leading-[1.1] break-words">
-              {lang === 'en' ? 'Community ' : 'Uwezeshaji wa '}
-              <span className="text-ochre-500">{lang === 'en' ? 'Empowerment.' : 'Jamii.'}</span>
-            </h1>
-            <p className="text-lg sm:text-xl text-stone-200 mb-10 leading-relaxed max-w-xl font-light">
-              {lang === 'en' 
-                ? 'We are dedicated to uplifting Kenyan communities through sustainable initiatives, authentic collaboration, and grassroots action. Together, we build a brighter tomorrow.'
-                : 'Tumejitolea kuinua jamii za Kenya kupitia mipango endelevu, ushirikiano wa kweli, na hatua za mashinani. Pamoja, tunajenga kesho iliyo bora.'}
-            </p>
-            
-            <div className="flex flex-col sm:flex-row items-start sm:items-center space-y-4 sm:space-y-0 sm:space-x-4">
-              <motion.a 
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                href="#contact" 
-                className="inline-flex items-center px-8 py-4 rounded-full bg-ochre-500 text-earth-900 font-bold hover:bg-ochre-400 transition-colors shadow-lg group text-lg"
-              >
-                {lang === 'en' ? 'Get Involved' : 'Shiriki Leo'}
-                <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
-              </motion.a>
-              <motion.a 
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                href="#about" 
-                className="inline-flex items-center px-8 py-4 rounded-full bg-earth-800/50 backdrop-blur-sm border border-earth-700 text-white font-medium hover:bg-earth-800 transition-colors text-lg"
-              >
-                {lang === 'en' ? 'Learn More' : 'Jifunze Zaidi'}
-              </motion.a>
-            </div>
-          </motion.div>
+            {lang === 'en' ? (
+              <>
+                Empowering<br />
+                <span className="text-ochre-400">Communities.</span><br />
+                Changing Lives.
+              </>
+            ) : (
+              <>
+                Kuwawezesha<br />
+                <span className="text-ochre-400">Jamii.</span><br />
+                Kubadilisha Maisha.
+              </>
+            )}
+          </motion.h1>
 
-          <motion.div 
-            initial={{ opacity: 0, x: 30 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
-            className="hidden lg:flex justify-end"
+          {/* Subtext */}
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, delay: 0.25 }}
+            className="text-white/70 text-lg md:text-xl max-w-2xl leading-relaxed mb-12"
           >
-             {/* Abstract geometry/stats cards overlapping the hero area to give a modern flair */}
-             <div className="relative w-full max-w-sm">
-                <div className="absolute top-0 right-0 -mr-4 -mt-4 w-72 h-72 bg-ochre-500/20 rounded-full blur-3xl"></div>
-                
-                <div className="bg-earth-900/60 backdrop-blur-md rounded-3xl p-8 border border-white/10 shadow-2xl relative z-20 translate-y-12">
-                   <div className="space-y-6">
-                       <div className="flex items-start">
-                         <motion.div 
-                           initial={{ scale: 0 }} 
-                           animate={{ scale: 1 }} 
-                           transition={{ type: "spring", stiffness: 200, damping: 12, delay: 0.5 }}
-                           className="flex-shrink-0 bg-ochre-500 p-3 rounded-full"
-                         >
-                           <Users className="h-6 w-6 text-earth-900" />
-                         </motion.div>
-                         <div className="ml-5">
-                           <h3 className="text-white font-bold text-xl">
-                             <Counter value={10} format={(v) => `${Math.round(v)}k+`} />
-                           </h3>
-                           <p className="text-stone-300 text-sm mt-1">{lang === 'en' ? 'Lives positively impacted' : 'Maisha yaliyoguswa'}</p>
-                         </div>
-                      </div>
-                      <div className="flex items-start">
-                         <motion.div 
-                           initial={{ scale: 0 }} 
-                           animate={{ scale: 1 }} 
-                           transition={{ type: "spring", stiffness: 200, damping: 12, delay: 0.7 }}
-                           className="flex-shrink-0 bg-white p-3 rounded-full"
-                         >
-                           <HeartHandshake className="h-6 w-6 text-earth-600" />
-                         </motion.div>
-                         <div className="ml-5">
-                           <h3 className="text-white font-bold text-xl">
-                             <Counter value={50} format={(v) => `${Math.round(v)}+`} />
-                           </h3>
-                           <p className="text-stone-300 text-sm mt-1">{lang === 'en' ? 'Active community programs' : 'Miradi ya kijamii inayoendelea'}</p>
-                         </div>
-                      </div>
-                      <div className="flex items-start">
-                         <motion.div 
-                           initial={{ scale: 0 }} 
-                           animate={{ scale: 1 }} 
-                           transition={{ type: "spring", stiffness: 200, damping: 12, delay: 0.9 }}
-                           className="flex-shrink-0 bg-earth-700 p-3 rounded-full border border-earth-600"
-                         >
-                           <Leaf className="h-6 w-6 text-ochre-400" />
-                         </motion.div>
-                         <div className="ml-5">
-                           <h3 className="text-white font-bold text-xl">
-                             <Counter value={100} format={(v) => `${Math.round(v)}%`} />
-                           </h3>
-                           <p className="text-stone-300 text-sm mt-1">{lang === 'en' ? 'Sustainable approach' : 'Mbinu endelevu'}</p>
-                         </div>
-                      </div>
-                   </div>
-                </div>
-             </div>
+            {lang === 'en'
+              ? 'Azma Yetu uplifts boys, women, widows, and youth — building resilient communities free from drug abuse across Kenya.'
+              : 'Azma Yetu inainua wavulana, wanawake, wajane, na vijana — ikijenga jamii imara zisizo na dawa za kulevya Kenya nzima.'}
+          </motion.p>
+
+          {/* CTAs */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, delay: 0.4 }}
+            className="flex flex-wrap gap-4"
+          >
+            <a
+              href="#our-work"
+              className="px-8 py-4 bg-ochre-500 hover:bg-ochre-400 text-earth-900 font-bold rounded-full transition-all duration-200 shadow-lg shadow-ochre-500/30 hover:shadow-ochre-400/40 hover:-translate-y-0.5"
+            >
+              {lang === 'en' ? 'Our Work' : 'Kazi Yetu'}
+            </a>
+            <a
+              href="#contact"
+              className="px-8 py-4 bg-white/10 hover:bg-white/20 text-white font-semibold rounded-full border border-white/20 transition-all duration-200 hover:-translate-y-0.5"
+            >
+              {lang === 'en' ? 'Get Involved' : 'Shiriki Nasi'}
+            </a>
           </motion.div>
         </div>
       </div>
+
+      {/* Scroll cue */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 1.2 }}
+        className="absolute bottom-10 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-2"
+      >
+        <span className="text-white/40 text-xs uppercase tracking-widest">
+          {lang === 'en' ? 'Scroll' : 'Sogeza'}
+        </span>
+        <motion.div
+          animate={{ y: [0, 6, 0] }}
+          transition={{ repeat: Infinity, duration: 1.6, ease: 'easeInOut' }}
+        >
+          <ArrowDown className="w-4 h-4 text-ochre-400" />
+        </motion.div>
+      </motion.div>
     </section>
   );
 }
