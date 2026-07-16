@@ -6,8 +6,6 @@ const words = ['Empowering', 'Communities.', 'Changing Lives.'];
 
 const heroStats = [
   { value: '5', label: 'Focus Areas' },
-  { value: 'Est. 2020', label: 'Nairobi, Kenya' },
-  { value: '100%', label: 'Grassroots Driven' },
 ];
 
 export function Hero() {
