@@ -10,6 +10,7 @@ import { CallToAction } from './components/CallToAction';
 import { Footer } from './components/Footer';
 import { LanguageProvider } from './contexts/LanguageContext';
 import { ScrollProgress } from './components/ScrollProgress';
+import { StickyDonate } from './components/StickyDonate';
 import { motion } from 'motion/react';
 
 export default function App() {
@@ -22,6 +23,7 @@ export default function App() {
         className="min-h-[100dvh] flex flex-col font-sans selection:bg-ochre-500/30 selection:text-earth-900 relative"
       >
         <ScrollProgress />
+        <StickyDonate />
         <Header />
         <main className="flex-grow">
           <Hero />

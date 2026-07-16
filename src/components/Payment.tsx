@@ -17,13 +17,21 @@ export function Payment() {
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <h2 className="font-display text-4xl md:text-5xl font-bold text-earth-900 mb-6 tracking-tight">
-              {lang === 'en' ? 'Support Our Initiatives' : 'Saidia Mipango Yetu'}
+            <div className="inline-block bg-ochre-100 text-ochre-700 text-sm font-semibold uppercase tracking-widest px-4 py-1.5 rounded-full mb-6">
+              {lang === 'en' ? 'Make a Difference' : 'Fanya Tofauti'}
+            </div>
+            <h2 className="font-display text-4xl md:text-5xl font-bold text-earth-900 mb-5 tracking-tight">
+              {lang === 'en' ? 'Every shilling counts.' : 'Kila shilingi inahusika.'}
             </h2>
-            <p className="text-earth-700 text-lg leading-relaxed">
-              {lang === 'en' 
-                ? 'Support our community initiatives safely and securely. You can make payments or donations to Azma Yetu through Kenya Commercial Bank (KCB), M-PESA, or Vooma using the official details below.'
-                : 'Saidia mipango yetu ya kijamii kwa usalama. Unaweza kufanya malipo au michango kwa Azma Yetu kupitia Benki ya KCB, M-PESA, au Vooma ukitumia maelezo rasmi hapa chini.'}
+            <p className="text-earth-500 text-lg leading-relaxed mb-6">
+              {lang === 'en'
+                ? 'Your contribution goes directly to the people who need it most — mentoring a boy at risk, supporting a widow rebuilding her life, or equipping a woman with skills for independence.'
+                : 'Mchango wako unaenda moja kwa moja kwa wanaohitaji zaidi — kumsaidia mvulana hatarini, kumsaidia mjane kujenga upya maisha yake, au kumpa mwanamke ujuzi wa uhuru.'}
+            </p>
+            <p className="text-earth-400 text-base">
+              {lang === 'en'
+                ? 'Donate safely via M-PESA, KCB Bank, or Vooma using the details below.'
+                : 'Changia kwa usalama kupitia M-PESA, KCB Bank, au Vooma ukitumia maelezo hapa chini.'}
             </p>
           </motion.div>
         </div>
