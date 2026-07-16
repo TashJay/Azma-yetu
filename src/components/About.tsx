@@ -9,9 +9,6 @@ const statItem = {
   show: { opacity: 1, scale: 1, y: 0, transition: { duration: 0.45, ease: [0.22, 1, 0.36, 1] } },
 };
 
-const stats = [
-  { value: '5 Pillars', label: 'of focused community impact',    bar: 'bg-ochre-500'   },
-];
 
 export function About() {
   return (
@@ -109,27 +106,6 @@ export function About() {
               </motion.p>
             </div>
 
-            {/* Stats grid */}
-            <motion.div
-              variants={statVariants}
-              initial="hidden"
-              whileInView="show"
-              viewport={{ once: true }}
-              className="grid grid-cols-2 gap-3"
-            >
-              {stats.map((s, i) => (
-                <motion.div
-                  key={i}
-                  variants={statItem}
-                  whileHover={{ scale: 1.03, transition: { duration: 0.2 } }}
-                  className="bg-white border border-earth-100 rounded-2xl p-4 shadow-sm cursor-default overflow-hidden relative"
-                >
-                  <div className={`absolute top-0 left-0 right-0 h-0.5 ${s.bar} rounded-full`} />
-                  <p className="font-display font-bold text-earth-900 text-base leading-tight mt-1">{s.value}</p>
-                  <p className="text-earth-400 text-xs mt-1 leading-snug">{s.label}</p>
-                </motion.div>
-              ))}
-            </motion.div>
           </motion.div>
         </div>
       </div>

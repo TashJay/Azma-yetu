@@ -10,7 +10,7 @@ const pillars = [
     bar: 'bg-sky-400',
     tag: 'Mentorship · Leadership · Education',
     title: 'Boy Child Empowerment',
-    desc: "In Kenya, the boy child has long been overlooked in development conversations. We run structured mentorship cohorts that meet young men where they are — in schools, communities, and streets — giving them frameworks for emotional intelligence, personal responsibility, and purposeful ambition. Our programs cover academic support, life-skills coaching, and peer mentorship networks designed to outlast formal program cycles and become a culture of excellence.",
+    desc: "Through our flagship programme VIJANA ARISE — #BoyChildOClock — Azma Yetu is committed to uplifting the boy child emotionally, spiritually, and economically. We believe that a thriving community begins with young men who are grounded, purposeful, and supported. Working alongside families, schools, faith leaders, and community stakeholders, we create spaces where masculinity is understood not as dominance, but as responsibility, resilience, and dignity. This programme is our call to action — to our young men, and to every voice willing to stand with them.",
   },
   {
     num: '02',
