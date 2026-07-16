@@ -2,7 +2,6 @@ import { Header } from './components/Header';
 import { Hero } from './components/Hero';
 import { About } from './components/About';
 import { OurWork } from './components/OurWork';
-import { ScrollJourney } from './components/ScrollJourney';
 import { Founders } from './components/Founders';
 import { GetInvolved } from './components/GetInvolved';
 import { Payment } from './components/Payment';
@@ -29,7 +28,6 @@ export default function App() {
         <main className="flex-grow">
           <Hero />
           <About />
-          <ScrollJourney />
           <OurWork />
           <Founders />
           <GetInvolved />
