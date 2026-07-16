@@ -1,105 +1,135 @@
-import { motion } from 'motion/react';
+import { motion, useScroll, useTransform } from 'motion/react';
 import { ArrowDown } from 'lucide-react';
+import { useRef } from 'react';
 import { useLanguage } from '../contexts/LanguageContext';
 
 export function Hero() {
   const { lang } = useLanguage();
+  const ref = useRef<HTMLElement>(null);
+  const { scrollYProgress } = useScroll({ target: ref, offset: ['start start', 'end start'] });
+  const imgY = useTransform(scrollYProgress, [0, 1], ['0%', '20%']);
+  const opacity = useTransform(scrollYProgress, [0, 0.8], [1, 0]);
+
+  const words = lang === 'en'
+    ? ['Empowering', 'Communities.', 'Changing Lives.']
+    : ['Kuwawezesha', 'Jamii.', 'Kubadilisha Maisha.'];
 
   return (
-    <section className="relative min-h-[100dvh] flex flex-col justify-center overflow-hidden bg-earth-900">
-      {/* Background image */}
-      <div className="absolute inset-0">
+    <section ref={ref} className="relative min-h-[100dvh] flex flex-col justify-center overflow-hidden bg-earth-900">
+      {/* Parallax background */}
+      <motion.div className="absolute inset-0" style={{ y: imgY }}>
         <img
           src="/src/assets/images/kenyan_community_hero_1780695687550.png"
-          alt="Community"
-          className="w-full h-full object-cover opacity-30"
+          alt="Kenyan community members working together"
+          className="w-full h-full object-cover opacity-35"
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-earth-900/60 via-earth-900/40 to-earth-900/90" />
-      </div>
+      </motion.div>
 
-      {/* Decorative ochre line top */}
+      {/* Gradient overlay */}
+      <div className="absolute inset-0 bg-gradient-to-b from-earth-900/50 via-earth-900/30 to-earth-900/95" />
+
+      {/* Animated ochre glow orbs */}
+      <motion.div
+        className="absolute top-1/4 right-1/4 w-96 h-96 rounded-full bg-ochre-500/10 blur-3xl pointer-events-none"
+        animate={{ scale: [1, 1.2, 1], opacity: [0.5, 0.8, 0.5] }}
+        transition={{ duration: 6, repeat: Infinity, ease: 'easeInOut' }}
+      />
+      <motion.div
+        className="absolute bottom-1/4 left-1/3 w-64 h-64 rounded-full bg-forest-700/10 blur-3xl pointer-events-none"
+        animate={{ scale: [1.2, 1, 1.2], opacity: [0.4, 0.7, 0.4] }}
+        transition={{ duration: 8, repeat: Infinity, ease: 'easeInOut', delay: 2 }}
+      />
+
+      {/* Top ochre line */}
       <div className="absolute top-0 left-0 right-0 h-1 bg-ochre-500" />
 
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-32 md:py-48">
-        <div className="max-w-4xl">
-          {/* Badge */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="inline-flex items-center gap-2 bg-ochre-500/20 border border-ochre-500/40 rounded-full px-4 py-1.5 mb-8"
-          >
-            <span className="w-2 h-2 rounded-full bg-ochre-400 animate-pulse" />
-            <span className="text-ochre-300 text-sm font-medium tracking-wide uppercase">
-              {lang === 'en' ? 'Azma Yetu Community Based Organization' : 'Shirika la Jamii la Azma Yetu'}
-            </span>
-          </motion.div>
+      <motion.div
+        style={{ opacity }}
+        className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-32 md:py-40"
+      >
+        {/* Badge */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          className="inline-flex items-center gap-2 bg-ochre-500/20 border border-ochre-500/40 rounded-full px-4 py-1.5 mb-10"
+        >
+          <motion.span
+            className="w-2 h-2 rounded-full bg-ochre-400"
+            animate={{ opacity: [1, 0.3, 1] }}
+            transition={{ duration: 1.5, repeat: Infinity }}
+          />
+          <span className="text-ochre-300 text-sm font-medium tracking-wide uppercase">
+            {lang === 'en' ? 'Azma Yetu Community Based Organization' : 'Shirika la Jamii la Azma Yetu'}
+          </span>
+        </motion.div>
 
-          {/* Headline */}
-          <motion.h1
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.1 }}
-            className="font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white leading-[1.08] tracking-tight mb-6"
-          >
-            {lang === 'en' ? (
-              <>
-                Empowering<br />
-                <span className="text-ochre-400">Communities.</span><br />
-                Changing Lives.
-              </>
-            ) : (
-              <>
-                Kuwawezesha<br />
-                <span className="text-ochre-400">Jamii.</span><br />
-                Kubadilisha Maisha.
-              </>
-            )}
-          </motion.h1>
-
-          {/* Subtext */}
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.25 }}
-            className="text-white/70 text-base md:text-lg max-w-2xl leading-relaxed mb-8"
-          >
-            {lang === 'en'
-              ? 'Azma Yetu uplifts boys, women, widows, and youth — building resilient communities free from drug abuse across Kenya.'
-              : 'Azma Yetu inainua wavulana, wanawake, wajane, na vijana — ikijenga jamii imara zisizo na dawa za kulevya Kenya nzima.'}
-          </motion.p>
-
-          {/* CTAs */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.4 }}
-            className="flex flex-wrap gap-4"
-          >
-            <a
-              href="#our-work"
-              className="px-8 py-4 bg-ochre-500 hover:bg-ochre-400 text-earth-900 font-bold rounded-full transition-all duration-200 shadow-lg shadow-ochre-500/30 hover:shadow-ochre-400/40 hover:-translate-y-0.5"
+        {/* Staggered headline */}
+        <div className="mb-6">
+          {words.map((word, i) => (
+            <motion.div
+              key={i}
+              initial={{ opacity: 0, x: -40 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6, delay: 0.15 + i * 0.15, ease: [0.22, 1, 0.36, 1] }}
             >
-              {lang === 'en' ? 'Our Work' : 'Kazi Yetu'}
-            </a>
-            <a
-              href="#contact"
-              className="px-8 py-4 bg-white/10 hover:bg-white/20 text-white font-semibold rounded-full border border-white/20 transition-all duration-200 hover:-translate-y-0.5"
-            >
-              {lang === 'en' ? 'Get Involved' : 'Shiriki Nasi'}
-            </a>
-          </motion.div>
+              <span
+                className={`block font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-[1.08] tracking-tight ${
+                  i === 1 ? 'text-ochre-400' : 'text-white'
+                }`}
+              >
+                {word}
+              </span>
+            </motion.div>
+          ))}
         </div>
-      </div>
+
+        {/* Subtext */}
+        <motion.p
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, delay: 0.6 }}
+          className="text-white/65 text-base md:text-lg max-w-xl leading-relaxed mb-10"
+        >
+          {lang === 'en'
+            ? 'Azma Yetu uplifts boys, women, widows, and youth — building resilient communities free from drug abuse across Kenya.'
+            : 'Azma Yetu inainua wavulana, wanawake, wajane, na vijana — ikijenga jamii imara zisizo na dawa za kulevya Kenya nzima.'}
+        </motion.p>
+
+        {/* CTAs */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, delay: 0.75 }}
+          className="flex flex-wrap gap-4"
+        >
+          <motion.a
+            href="#our-work"
+            whileHover={{ scale: 1.04, y: -2 }}
+            whileTap={{ scale: 0.97 }}
+            className="px-8 py-4 bg-ochre-500 text-earth-900 font-bold rounded-full shadow-lg shadow-ochre-500/30 transition-colors hover:bg-ochre-400"
+          >
+            {lang === 'en' ? 'Our Work' : 'Kazi Yetu'}
+          </motion.a>
+          <motion.a
+            href="#contact"
+            whileHover={{ scale: 1.04, y: -2 }}
+            whileTap={{ scale: 0.97 }}
+            className="px-8 py-4 bg-white/10 text-white font-semibold rounded-full border border-white/20 backdrop-blur-sm transition-colors hover:bg-white/20"
+          >
+            {lang === 'en' ? 'Get Involved' : 'Shiriki Nasi'}
+          </motion.a>
+        </motion.div>
+      </motion.div>
 
       {/* Scroll cue */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ delay: 1.2 }}
-        className="absolute bottom-10 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-2"
+        transition={{ delay: 1.4 }}
+        className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-2"
       >
-        <span className="text-white/40 text-xs uppercase tracking-widest">
+        <span className="text-white/30 text-xs uppercase tracking-widest">
           {lang === 'en' ? 'Scroll' : 'Sogeza'}
         </span>
         <motion.div
